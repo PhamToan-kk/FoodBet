@@ -40,6 +40,8 @@ import {
             <MainStack.Screen component={TabsNavigator} name={'Tabs'}/>
             <MainStack.Screen component={Search} name={'Search'} />
             <MainStack.Screen component={ProductDetail} name={'ProductDetail'} />
+            <MainStack.Screen component={Cart} name={'Cart'} />
+
             
         </MainStack.Navigator>
     )

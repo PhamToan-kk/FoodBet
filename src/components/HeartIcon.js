@@ -28,8 +28,8 @@ export const HeartIcon = (props) =>
 const styles = ScaledSheet.create({
     container:{
         position:'absolute',
-        top:5,
-        right:5,
+        top:10,
+        right:10,
         width:'25@s',
         height:'25@s',
         borderRadius:999,

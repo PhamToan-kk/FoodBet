@@ -17,7 +17,7 @@ const tabs = {
   Home: {
     // < Screen name
     labelStyle: {
-      color: Colors.Cornflower_Blue,
+      color: Colors.red_fresh,
     },
     icon: {
       component: () => (
@@ -25,10 +25,10 @@ const tabs = {
           MaterialCommunityIcons
           name="home"
           size={25}
-          color={Colors.Cornflower_Blue}
+          color={Colors.red_fresh}
         />
       ),
-      activeColor: Colors.Cornflower_Blue,
+      activeColor:Colors.red_fresh,
       // inactiveColor: 'red',
     },
     background: {
@@ -39,13 +39,13 @@ const tabs = {
   Map: {
     // < Screen name
     labelStyle: {
-      color: Colors.Cornflower_Blue,
+      color: Colors.red_fresh,
     },
     icon: {
       component: () => (
-        <VectorIcon MaterialCommunityIcons name="layers-search-outline" color={Colors.Cornflower_Blue} size={23} />
+        <VectorIcon MaterialCommunityIcons name="layers-search-outline" color={Colors.red_fresh} size={23} />
       ),
-      activeColor: Colors.Cornflower_Blue,
+      activeColor: Colors.red_fresh,
       inactiveColor: 'blue',
     },
     background: {
@@ -56,14 +56,14 @@ const tabs = {
   Cart: {
     // < Screen name
     labelStyle: {
-      color: Colors.Cornflower_Blue,
+      color: Colors.red_fresh,
     },
     icon: {
       component: () => (
-        <VectorIcon FontAwesome5 name="hornbill" color={Colors.Cornflower_Blue} size={23} />
+        <VectorIcon FontAwesome5 name="hornbill" color={Colors.red_fresh} size={23} />
 
       ),
-      activeColor: Colors.Cornflower_Blue,
+      activeColor: Colors.red_fresh,
       inactiveColor: 'blue',
     },
     background: {
@@ -74,14 +74,14 @@ const tabs = {
   Account: {
     // < Screen name
     labelStyle: {
-      color: Colors.Cornflower_Blue,
+      color: Colors.red_fresh,
     },
     icon: {
       component: () => (
-        <VectorIcon FontAwesome5 name="hornbill" color={Colors.Cornflower_Blue} size={23} />
+        <VectorIcon FontAwesome5 name="hornbill" color={Colors.red_fresh} size={23} />
 
       ),
-      activeColor: Colors.Cornflower_Blue,
+      activeColor: Colors.red_fresh,
       inactiveColor: 'blue',
     },
     background: {
@@ -105,7 +105,7 @@ export const TabsNavigator = () => {
       )}>
       <Tab.Screen component={Home} name={'Home'} />
       <Tab.Screen component={Map} name={'Map'} />
-      <Tab.Screen component={Cart} name={'Cart'} />
+      {/* <Tab.Screen component={Cart} name={'Cart'} /> */}
       <Tab.Screen component={Account} name={'Account'} />
 
     </Tab.Navigator>

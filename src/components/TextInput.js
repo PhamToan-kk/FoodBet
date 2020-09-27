@@ -43,6 +43,9 @@ export const TextInput = (props) => {
     selectTextOnFocus,
     showBorderBottom = false,
     editable,
+    multiline,
+    onBlur,
+    rest
   } = props;
   const [secureTextEntry, setSecureTextEntry] = useState(password);
   const [borderBottomColor, setBorderBottomColor] = useState(null);
@@ -81,6 +84,7 @@ export const TextInput = (props) => {
       <TextInputNative
 
         onChangeText={onChangeText}
+        // multiline={multiline}
         placeholder={placeholder}
         placeholderTextColor={Colors.Link_Water}
         secureTextEntry={secureTextEntry}
@@ -91,7 +95,9 @@ export const TextInput = (props) => {
         numberOfLines={numberOfLines}
         selectTextOnFocus={selectTextOnFocus}
         onFocus={() => setBorderBottomColor(Colors.star)}
+        onBlur={onBlur}
         // onBlur={() => setBorderBottomColor(Colors.borderBottomTextField)}
+        {...props}
       />
       {password && (
         <Eyes

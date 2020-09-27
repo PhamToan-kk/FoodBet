@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     // default style
     text: {
       fontSize: 12,
-      fontFamily:'American Typewriter'
+      fontFamily:'DamascusLight'
     },
     // variations
     regular: {

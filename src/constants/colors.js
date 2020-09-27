@@ -109,6 +109,8 @@ export const Colors = {
     Linear_white3:'rgb(244,244,244)',
     Linear_white4:'rgb(238,238,238)',
     Linear_white5:'rgb(245,245,245)',
+    Linear_white6:'rgb(250,250,250)',
+
 
 
     Linear_white11: 'rgba(255,255,255,0.1)',
@@ -121,7 +123,11 @@ export const Colors = {
     linear_yeloow3:'rgba(193,193,191,0.5)',
 
     red_fresh:'rgb(250,63,68)',
+
+    red_fresh_opacity:'rgba(250,63,68,0.5)',
     special_gray:'rgb(169,170,172)',
+    special_gray_opacity:'rgba(169,170,172,0.5)',
+
     white_opacity:'rgba(255,255,255,0.3)'
 
   

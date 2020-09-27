@@ -12,6 +12,8 @@ import {
 } from '../../components'
 import {Colors,FontSizes} from '../../constants'
 import { Rating, AirbnbRating } from 'react-native-ratings';
+import { Styles } from '../../styles'
+import PropTypes from 'prop-types'; // ES6
 
 
 
@@ -22,13 +24,24 @@ const data = [
         name:'grill salmon',
         url:"https://asterseniorcommunities.com/wp-content/uploads/2017/03/plate-food.jpg",
         price:22,
-
+        intro:"Futo means large. So Futo Maki are large rolls of rice wrapped around several fillings with nori on the inside and often sesame seeds on the outcies. There are normally 10 pieces in a roll. A common examples is a California roll with crab, cucmber and avocado.",
+        review:[
+            {customer:'John',content:'it is good food for my heal',time:'April 4,2019'},
+            {customer:'JohnDoe',content:'it is good food for my heal hu',time:'April 4,2019'},
+            {customer:'JanDoe',content:'it is good food for my heal hu',time:'April 4,2019'},
+        ]
     },
     {
         id:2,
         name:'grill salmon',
         url:"https://images.blogthings.com/whatthanksgivingleftoversareyouquiz/plate-of-food.jpg",
         price:22,
+        intro:"Futo means large. So Futo Maki are large rolls of rice wrapped around several fillings with nori on the inside and often sesame seeds on the outcies. There are normally 10 pieces in a roll. A common examples is a California roll with crab, cucmber and avocado.",
+        review:[
+            {customer:'John',content:'it is good food for my heal',time:'April 4,2019'},
+            {customer:'JohnDoe',content:'it is good food for my heal hu',time:'April 4,2019'},
+            {customer:'JanDoe',content:'it is good food for my heal hu',time:'April 4,2019'},
+        ]
 
     },
     {
@@ -36,17 +49,24 @@ const data = [
         name:'grill salmon',
         url:"https://znews-photo.zadn.vn/w660/Uploaded/kbd_bcvi/2019_09_29/tai_xuong.jpg",
         price:22,
-
+        intro:"Futo means large. So Futo Maki are large rolls of rice wrapped around several fillings with nori on the inside and often sesame seeds on the outcies. There are normally 10 pieces in a roll. A common examples is a California roll with crab, cucmber and avocado.",
+        review:[
+            {customer:'John',content:'it is good food for my heal',time:'April 4,2019'},
+            {customer:'JohnDoe',content:'it is good food for my heal hu',time:'April 4,2019'},
+            {customer:'JanDoe',content:'it is good food for my heal hu',time:'April 4,2019'},
+        ]
 
     }
 ]
 
 
+
 const PopularFood = (props) => 
 {
+    const { navigation ,foodData} = props
 
     const renderFoodItem = ({item})=>(
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>navigation.navigate('ProductDetail',{item:item})}>
         <Morph style={styles.foodItem}>
             <LinearGradient
                 style={styles.imageView}
@@ -99,7 +119,7 @@ const PopularFood = (props) =>
         <FlatList
         showsHorizontalScrollIndicator={false}
         horizontal
-        data={data}
+        data={foodData}
         renderItem={renderFoodItem}
         keyExtractor={(item)=>item.id.toString()}
         />
@@ -108,6 +128,9 @@ const PopularFood = (props) =>
 );}
 
 
+PopularFood.propTypes = {
+    foodData: PropTypes.array,
+}
 const styles = ScaledSheet.create({
     container:{
         height:'220@vs',
@@ -152,14 +175,10 @@ const styles = ScaledSheet.create({
     },
     contentItem:{
         flex:1,
-        justifyContent:'space-between',
-        flexDirection:'row',
-        alignItems:'center'
+        ...Styles.row_between_center
     },
     ratingView:{
-        flexDirection:'row',
-        justifyContent:'flex-start',
-        alignItems:'center'
+        ...Styles.row_start_center
     }
 })
 
