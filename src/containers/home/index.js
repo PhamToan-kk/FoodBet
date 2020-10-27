@@ -5,7 +5,7 @@ import SearchView from './SearchView'
 import PopularFood from './PopularFood'
 import BestFood from './BestFood'
 import LinearGradient from 'react-native-linear-gradient';
-import { Colors} from '../../constants'
+import {Colors,FontSizes} from '../../theme'
 import { ScrollView } from 'react-native-gesture-handler';
 import {useSelector, useDispatch} from 'react-redux'
 import AsyncStorage from '@react-native-community/async-storage';
@@ -23,7 +23,7 @@ export const Home = (props) =>
             // return jsonValue != null ? JSON.parse(jsonValue) : null;
             if(jsonValue != null){
                 dispatch(actUpProductToCart(JSON.parse(jsonValue)))
-                // console.log('data asynce',JSON.parse(jsonValue))
+                console.log('data asynce',JSON.parse(jsonValue))
             }
 
         } catch(e) {

@@ -127,6 +127,8 @@ export const Colors = {
     red_fresh_opacity:'rgba(250,63,68,0.5)',
     special_gray:'rgb(169,170,172)',
     special_gray_opacity:'rgba(169,170,172,0.5)',
+    special_gray_opacity2:'rgba(169,170,172,0.1)',
+
 
     white_opacity:'rgba(255,255,255,0.3)'
 

@@ -11,10 +11,8 @@ import {
     TabBar 
 } from 'react-native-tab-view';
 import { ScaledSheet, } from 'react-native-size-matters';
-import {
-    Colors,
-    FontSizes
-} from '../../constants'
+import {Colors,FontSizes} from '../../theme'
+
 import { Styles } from '../../styles'
 import { FText } from '../../components';
 import RenderReviews from './RenderReviews'
@@ -22,7 +20,6 @@ import RenderReviews from './RenderReviews'
 
 const RenderTabProduct = React.memo((props) => 
 {
-  console.log('tab render ')
     const {item} = props
     const FirstRoute = () => (
         <View style={{flex:1,paddingTop:30}}>

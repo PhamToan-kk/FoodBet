@@ -10,7 +10,7 @@ import {
     MoveIcon,
     ReturnButton
 } from '../../components'
-import {Colors,FontSizes} from '../../constants'
+import {Colors,FontSizes} from '../../theme'
 import { Styles } from '../../styles'
 import RenderTabProduct from './RenderTabProduct'
 import {useSelector, useDispatch} from 'react-redux'
@@ -22,7 +22,7 @@ const RenderEditAmount = (props)=>
 {  
   const{onAddToCart,item} = props  
 
-  console.log('add to cart',onAddToCart)
+//   console.log('add to cart',onAddToCart)
   const [amount,setAmount]= useState(1)
   const increaseAmount= ()=> setAmount(amount+1)
   const decreaseAmount= ()=> {
@@ -65,8 +65,8 @@ export  const RenderDetailItem = (props)=>
                   <View style={styles.dot}/>
                   <View style={styles.dot}/>
               </View>
-              <MoveIcon size={35}/>
-              <View style={styles.headerItem}>
+                <HeartIcon size={35}/>
+                <View style={styles.headerItem}>
                   <FText h1 weight="400">{food.name}</FText>
                   <FText h1 weight="300">${food.price}</FText>
               </View>

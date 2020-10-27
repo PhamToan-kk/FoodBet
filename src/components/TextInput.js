@@ -11,7 +11,7 @@ import {
 import {VectorIcon} from './VectorIcon';
 // import {Morph} from './Morph';
 
-import {Colors} from '../constants';
+import {Colors} from '../theme';
 
 const Eyes = (props) => {
   return (

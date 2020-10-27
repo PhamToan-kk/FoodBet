@@ -13,36 +13,21 @@ import {
 import {Colors,FontSizes} from '../../theme'
 import { Styles } from '../../styles'
 import RenderTabProduct from './RenderTabProduct'
-import {useSelector, useDispatch} from 'react-redux'
-import {actAddToCart} from '../../redux/actions'
-import {RenderDetailItem} from './RenderDetailItem'
-import RenderHeader from './RenderHeader'
-  
 
-export const ProductDetail = (props) => 
-{
-    const{
-        navigation,
-        route
-    } = props
-
-    const {item} = route.params
-    const dispatch = useDispatch()
-    const onAddToCart = (product,amount)=>{
-        dispatch(actAddToCart(product,amount))
-    }
-
-
-    //render Main view
-    return(
-    <KeyboardAvoidingView style={{flex:1}}>    
-        <View style={styles.container}>
-            <RenderHeader item={item} navigation={navigation}/>
-            <RenderDetailItem food={item} onAddToCart={onAddToCart}/>   
-        </View>
-    </KeyboardAvoidingView>
+const RenderHeader = ({
+    item,navigation
+}) => (
+    <View style={styles.header}>
+        <Image style={styles.img} source={{uri:item.url}}/>
+                <TouchableOpacity 
+                style={styles.cartIcon}
+                onPress={()=>navigation.navigate('Cart')}
+                >
+                    <VectorIcon Ionicons name="ios-cart" color={Colors.white} size={30}/>
+                </TouchableOpacity>
+        <ReturnButton event = {()=>navigation.goBack()}/>
+    </View>
 );
-}
 
 
 const styles = ScaledSheet.create({
@@ -71,3 +56,4 @@ const styles = ScaledSheet.create({
     },
 })
  
+export default RenderHeader;

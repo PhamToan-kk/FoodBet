@@ -12,7 +12,10 @@ import AddFood from './AddFood'
 import CheckingOrder from './CheckingOrder'
 import DoneOrder from './DoneOrder'
 import {useSelector, useDispatch} from 'react-redux'
-
+import {
+  actDeleteProductOfCart,
+  actDecreaseAmountProduct,
+  actIncreaseAmountProduct} from '../../redux/actions'
 const data= [
     {
         id:1,
@@ -40,10 +43,24 @@ export const Cart = (props) =>
 {
   const {navigation} = props
   const {listFoods} = useSelector(state=>state.cart)
+  const dispatch = useDispatch()
 
+  const deleteProductOfCart = (id)=>{
+    dispatch(actDeleteProductOfCart(id))
+  }
+  const increaseAmount = (productId)=>{
+    dispatch(actIncreaseAmountProduct(productId))
+  }
+  const decreaseAmount = (productId)=>{
+    dispatch(actDecreaseAmountProduct(productId))
+  }
 
     const FirstRoute = () => (
-        <AddFood listCartFood={listFoods}/>
+        <AddFood listCartFood={listFoods} 
+        onDeleteProduct={deleteProductOfCart} 
+        increaseAmount={increaseAmount}
+        decreaseAmount={decreaseAmount}
+        />
     );
 
     const SecondRoute = () => (

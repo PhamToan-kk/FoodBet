@@ -3,7 +3,7 @@ import { Text, View ,StyleSheet} from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 import {VectorIcon} from './VectorIcon'
 import {Morph} from './Morph'
-import {Colors} from '../constants'
+import {Colors} from '../theme'
 export const HeartIcon = (props) => 
 {
     const { size, style } = props

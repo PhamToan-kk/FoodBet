@@ -15,3 +15,28 @@ export const actUpProductToCart = (products)=>{
         products:products
     }
 }
+
+
+export const actDeleteProductOfCart = (productId)=>{
+    return{
+        type:types.DELETE_PRODUCT_OF_CART,
+        productId:productId,
+    }
+}
+
+export const actIncreaseAmountProduct = (productId)=>{
+    return{
+        type:types.INCREASE_AMOUNT_PRODUCT,
+        productId:productId,
+        payload:1
+    }
+}
+
+export const actDecreaseAmountProduct = (productId)=>{
+    return{
+        type:types.DECREASE_AMOUNT_PRODUCT,
+        productId:productId,
+        payload:1
+    }
+}
+

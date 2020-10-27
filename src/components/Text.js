@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View ,StyleSheet} from 'react-native';
-import { Fonts,Colors,} from '../constants'
+import { Fonts,Colors,} from '../theme'
 export const FText = (props) => 
 {
 

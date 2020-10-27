@@ -1,16 +1,14 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React, {useState} from 'react';
-
 import{
   Home,
   Map,
   Cart,
   Account,
-
 } from '../containers'
 import AnimatedTabBar from '@gorhom/animated-tabbar';
 import {VectorIcon} from '../components';
-import {Colors} from '../constants'
+import {Colors} from '../theme'
 const Tab = createBottomTabNavigator();
 
 const tabs = {

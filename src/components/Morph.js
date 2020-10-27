@@ -1,7 +1,7 @@
 import React from 'react';
 import { View,StyleSheet} from 'react-native';
 import color from 'color';
-import {Colors} from '../constants'
+import {Colors} from '../theme'
 
 // không được sử dụng padding with newMorphism 
 // không được sử dụng padding with newMorphism 

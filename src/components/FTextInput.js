@@ -12,7 +12,7 @@ import {VectorIcon} from './VectorIcon';
 // import {Morph} from './Morph';
 import { ScaledSheet, } from 'react-native-size-matters';
 
-import {Colors,FontSizes} from '../constants';
+import {Colors,FontSizes} from '../theme';
 
 
 const Eyes = (props) => {

@@ -10,7 +10,7 @@ import {
     HeartIcon,
     MoveIcon
 } from '../../components'
-import {Colors,FontSizes} from '../../constants'
+import {Colors,FontSizes} from '../../theme'
 import { Rating, AirbnbRating } from 'react-native-ratings';
 import { Styles } from '../../styles'
 import PropTypes from 'prop-types'; // ES6

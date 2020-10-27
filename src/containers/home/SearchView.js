@@ -7,7 +7,7 @@ import {
     VectorIcon,
     Morph,
 } from '../../components'
-import {Colors,FontSizes} from '../../constants'
+import {Colors,FontSizes} from '../../theme'
 import color from 'color'
 import { Styles } from '../../styles'
 

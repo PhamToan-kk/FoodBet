@@ -3,7 +3,7 @@ import { Text, View ,TouchableOpacity,ImageBackground, KeyboardAvoidingView ,Ima
 import LinearGradient from 'react-native-linear-gradient';
 import { ScaledSheet, } from 'react-native-size-matters';
 import SignUpForm  from './SignUpForm'
-import {Colors, FontSizes} from '../../constants'
+import {Colors, FontSizes} from '../../theme'
 import {
     FText ,
     VectorIcon,

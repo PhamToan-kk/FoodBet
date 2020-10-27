@@ -1,13 +1,12 @@
 import * as types from '../../constants'
 import AsyncStorage from '@react-native-community/async-storage';
+import _ from 'lodash';
 
 const initialState =
+{ 
+    listFoods:[]
 
-{ listFoods:[
-    
-    
-
-]}
+}
 
 const getFoods = async () => {
     try {
@@ -27,40 +26,65 @@ const storeFoods = async (value) => {
     }
   }
 
-
-
-
 const cartReducer = (state=initialState,action)=>{
+    
     const listProducts = state.listFoods.map((item)=>item.product)
+    const listProductIds = state.listFoods.map((item)=>item.product.id)
+
     const newListFood =[...state.listFoods]
+    const indexProduct = listProducts.indexOf(action.product)
+    const indexOfProduct = listProductIds.indexOf(action.productId)
+
     switch(action.type){
         case types.ADD_TO_CART:
-            const {product,amount} = action
-            if(listProducts.includes(product)){
-                const indexProduct = listProducts.indexOf(product)
+            if(listProductIds.includes(action.product.id)){
                 newListFood[indexProduct].amount += action.amount
             }else{
                 newListFood.push({
-                    product,
-                    amount
+                product: action.product,
+                amount :action.amount
                 })
             } 
-            storeFoods(newListFood)
+            // storeFoods([])
             return {
                 ...state,
                 listFoods:newListFood
             }
             break;
         case types.UP_PRODUCTS_TO_CART:
-            const {products} = action
-            const totalFoods =  newListFood.concat(products)            
+            const totalFoods =  newListFood.concat(action.products)            
             return{
                 ...state,
                 listFoods:totalFoods
             }
             break;
-                
-      
+        case types.DELETE_PRODUCT_OF_CART:
+            const productNeed = newListFood.find((x)=>x.product.id === action.productId)
+            const remainFoods = _.pull(newListFood,productNeed)
+            return{
+                ...state,
+                listFoods:remainFoods
+            }
+            break;
+        case types.INCREASE_AMOUNT_PRODUCT:
+            newListFood[indexOfProduct].amount +=1
+            return{
+                ...state,
+                listFoods:newListFood
+            }
+        case types.DECREASE_AMOUNT_PRODUCT:   
+          
+            if(newListFood[indexOfProduct].amount >=2)
+            {
+                newListFood[indexOfProduct].amount -=1
+            }
+            return{
+                ...state,
+                listFoods:newListFood
+            }            
+        
+            
+
         default: 
         return {...state}
     }

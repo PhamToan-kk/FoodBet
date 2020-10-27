@@ -18,7 +18,7 @@ import {
     MoveIcon,
 
 } from '../../components'
-import {Colors,FontSizes,} from '../../constants'
+import {Colors,FontSizes} from '../../theme'
 import { Styles } from '../../styles'
 import UserAvatar from 'react-native-user-avatar';
 
@@ -52,7 +52,6 @@ const RenderReviews = (props) =>
                     <FText h4 weight="500" color={Colors.white}>Post</FText>
                 </TouchableOpacity>
             </View>            
-
         </View>
     )
 

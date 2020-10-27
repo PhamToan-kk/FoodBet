@@ -17,7 +17,7 @@ import {
     FTextInput
 } from '../../components'
 
-import {Colors, FontSizes} from '../../constants'
+import {Colors, FontSizes} from '../../theme'
 
 import SignInForm from './SignInform'
 

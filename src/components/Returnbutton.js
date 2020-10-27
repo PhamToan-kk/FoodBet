@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View,TouchableOpacity } from 'react-native';
-import {Colors} from '../constants'
+import {Colors} from '../theme'
 import { ScaledSheet, } from 'react-native-size-matters';
 import { Morph} from './Morph'
 import {VectorIcon} from './VectorIcon'

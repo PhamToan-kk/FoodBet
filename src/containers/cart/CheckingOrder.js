@@ -6,7 +6,7 @@ import RNPickerSelect from 'react-native-picker-select';
 
 
 const Play = React.memo( props =>{
-    console.log('play rerender ')
+    // console.log('play rerender ')
     return (<View>
         <Text>{props.name}</Text>
     </View>)
