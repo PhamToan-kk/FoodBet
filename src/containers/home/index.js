@@ -18,23 +18,12 @@ import {actUpProductToCart,setFoods,loadListFoods} from '../../redux/actions'
 export const Home = (props) => 
 {
     const {navigation} = props
-    const dispatch = useDispatch()
-    const popularFood = useSelector(state=>state.popularFood)
-    const getFoodsCart = async () => {
-        try {
-            const jsonValue = await AsyncStorage.getItem('FoodCart')
-            // return jsonValue != null ? JSON.parse(jsonValue) : null;
-            if(jsonValue != null){
-                dispatch(actUpProductToCart(JSON.parse(jsonValue)))
-                console.log('data asynce',JSON.parse(jsonValue))
-            }
+    const listFoods = useSelector(state=>state.listFoods)
+    const popularFood = listFoods.filter(item=>item.type=="popular")
+    const bestFood = listFoods.filter(item=>item.type=="best")
 
-        } catch(e) {
-          // error reading value
-        }
-      }
     useEffect(()=>{
-        getFoodsCart()
+        console.log('home')
     },[])
 
    
@@ -52,7 +41,7 @@ return(
             <SearchView navigation={navigation} />
             <ScrollView>
                 <PopularFood navigation={navigation} foodData={popularFood} />
-                <BestFood  navigation={navigation}/>
+                <BestFood  navigation={navigation} foodData={bestFood}/>
             </ScrollView>
 
         </View>

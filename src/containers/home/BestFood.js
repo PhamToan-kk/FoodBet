@@ -22,21 +22,7 @@ const data = [
         url:"https://www.pennmedicine.org/-/media/images/miscellaneous/food%20and%20drink/colorful_plate.ashx?mw=620&mh=408",
         price:22.22,
         intro:"Futo means large. So Futo Maki are large rolls of rice wrapped around several fillings with nori on the inside and often sesame seeds on the outcies. There are normally 10 pieces in a roll. A common examples is a California roll with crab, cucmber and avocado.",
-        review:[
-            {customer:'John',content:'it is good food for my heal',time:'April 4,2019'},
-            {customer:'JohnDoe',content:'it is good food for my heal hu',time:'April 4,2019'},
-            {customer:'JanDoe',content:'it is good food for my heal hu',time:'April 4,2019'},
-            {customer:'John',content:'it is good food for my heal',time:'April 4,2019'},
-            {customer:'JohnDoe',content:'it is good food for my heal hu',time:'April 4,2019'},
-            {customer:'JanDoe',content:'it is good food for my heal hu',time:'April 4,2019'},
-            {customer:'JanDoe',content:'it is good food for my heal hu',time:'April 4,2019'},
-            {customer:'JanDoe',content:'it is good food for my heal hu',time:'April 4,2019'},
-            {customer:'JanDoe',content:'it is good food for my heal hu',time:'April 4,2019'},
-            {customer:'JanDoe',content:'it is good food for my heal hu',time:'April 4,2019'},
-            {customer:'JanDoe',content:'it is good food for my heal hu',time:'April 4,2019'},
-            {customer:'JanDoe2',content:'it is good food for my heal hu23',time:'April 4,2019'},
-
-        ]
+        components: "100gam meat ,20gam sugar, 20gam vegetable"
 
     },
     {
@@ -45,11 +31,7 @@ const data = [
         url:"https://images.blogthings.com/whatthanksgivingleftoversareyouquiz/plate-of-food.jpg",
         price:23.22,
         intro:"Futo means large. So Futo Maki are large rolls of rice wrapped around several fillings with nori on the inside and often sesame seeds on the outcies. There are normally 10 pieces in a roll. A common examples is a California roll with crab, cucmber and avocado.",
-        review:[
-            {customer:'John',content:'it is good food for my heal',time:'April 4,2019'},
-            {customer:'JohnDoe',content:'it is good food for my heal hu',time:'April 4,2019'},
-            {customer:'JanDoe',content:'it is good food for my heal hu',time:'April 4,2019'},
-        ]
+        components: "100gam meat ,20gam sugar, 20gam vegetable"
 
     },
     {
@@ -58,19 +40,7 @@ const data = [
         url:"https://znews-photo.zadn.vn/w660/Uploaded/kbd_bcvi/2019_09_29/tai_xuong.jpg",
         price:22.22,
         intro:"Futo means large. So Futo Maki are large rolls of rice wrapped around several fillings with nori on the inside and often sesame seeds on the outcies. There are normally 10 pieces in a roll. A common examples is a California roll with crab, cucmber and avocado.",
-        review:[
-            {customer:'John',content:'it is good food for my heal',time:'April 4,2019'},
-            {customer:'JohnDoe',content:'it is good food for my heal hu',time:'April 4,2019'},
-            {customer:'JanDoe',content:'it is good food for my heal hu',time:'April 4,2019'},
-            {customer:'JanDoe',content:'it is good food for my heal hu',time:'April 4,2019'},
-            {customer:'JanDoe',content:'it is good food for my heal hu',time:'April 4,2019'},
-            {customer:'JanDoe',content:'it is good food for my heal hu',time:'April 4,2019'},
-            {customer:'JanDoe',content:'it is good food for my heal hu',time:'April 4,2019'},
-            {customer:'JanDoe',content:'it is good food for my heal hu',time:'April 4,2019'},
-            {customer:'JanDoe',content:'it is good food for my heal hu',time:'April 4,2019'},
-
-        
-        ]
+        components: "100gam meat ,20gam sugar, 20gam vegetable"
 
 
     }
@@ -80,9 +50,9 @@ const data = [
 
 const BestFood = (props) => 
 {
-    const { navigation} = props
+    const { navigation ,foodData} = props
     const renderFoodItem = (item)=>(
-                <TouchableOpacity key={item.id} onPress={()=>navigation.navigate('ProductDetail',{item:item})}>
+                <TouchableOpacity key={item.name} onPress={()=>navigation.navigate('ProductDetail',{item:item})}>
                     <Morph style={styles.itemContainer}>
                         <Image source={{uri:item.url}} style={styles.imageBackground}>
                         </Image>
@@ -94,7 +64,7 @@ const BestFood = (props) =>
                                 <View style={styles.ratingView}>
                                     <FText size={FontSizes.FONT_10}>4.5</FText>
                                     <Rating
-                                    startingValue={4.5}
+                                    startingValue={5}
 
                                     type='custom'
                                     ratingColor={Colors.red_fresh}
@@ -121,7 +91,7 @@ const BestFood = (props) =>
         style={styles.header}
         >Best Food</FText>
         <View style={styles.listItem}>
-            {data.map(renderFoodItem)}
+            {foodData.map(renderFoodItem)}
         </View>
     </View>
 );}

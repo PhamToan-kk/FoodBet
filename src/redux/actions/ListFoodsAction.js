@@ -2,7 +2,7 @@ import axios from 'axios';
 import * as types from '../../constants'
 import {store} from '../store'
 
-export const setFoods = (foods) => {
+export const actSetFoods = (foods) => {
     return{
         type: types.SET_FOODS,
         foods
@@ -18,16 +18,16 @@ export const setFoods = (foods) => {
 // }
 
 
-export const loadListFoods = () => {
+export const actLoadListFoods = () => {
     return dispatch => {
         axios.get('http://192.168.3.102:3000/foods/getFoods')
             .then(function (response) {
-                console.log('response in action',response.data)
+                console.log('response in action loadlistfoods',response.data)
                 // handle success
                 return response.data
             })
             .then((data)=>{
-                dispatch(setFoods(data))
+                dispatch(actSetFoods(data))
             })
             .catch(function (error) {
                 // handle error

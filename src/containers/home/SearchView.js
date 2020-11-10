@@ -63,19 +63,19 @@ const SearchView = (props) =>
                 showsHorizontalScrollIndicator={false}
                 >
             <FoodItem      
-                type="Sushi"  
+                type="sushi"  
                 source={require('../../assets/icons/sushi.png')}/>
             <FoodItem      
-                type="Fruit" 
+                type="fruit" 
                 source={require('../../assets/icons/fruit.png')}/>
             <FoodItem      
-                type="Icecream" 
+                type="icecream" 
                 source={require('../../assets/icons/icecream.png')}/>
             <FoodItem      
-                type="Fastfood" 
+                type="fastfood" 
                 source={require('../../assets/icons/fastfood.png')}/>
             <FoodItem      
-                type="Protein" 
+                type="protein" 
                 source={require('../../assets/icons/meat.png')}/>
 
         </ScrollView>

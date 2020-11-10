@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React,{useEffect, useRef, useState} from 'react';
 import { Text, View,TouchableOpacity } from 'react-native';
 import { ScaledSheet, } from 'react-native-size-matters';
 import {Colors,FontSizes} from '../../theme'
@@ -12,18 +12,45 @@ import {
 
     MoveIcon,
 } from '../../components'
-import Color from 'color';
 
+import Color from 'color';
+import {useSelector, useDispatch} from 'react-redux'
+import RenderResult from './RenderResult';
 export const Search = (props) => 
 {   
     const {navigation,route} = props
     const {keyWord} = route.params
-    const [value,setValue] = useState()
-    //render input view
+    const [searchTerm,setSearchTerm] = useState(keyWord)
+    const [filterFoods,setFilterFoods] = useState([])
+    const typingTimeoutRef = useRef(null)
+
     useEffect(()=>{
-        if(keyWord) setValue(keyWord)
+        filterFood(searchTerm)
     },[])
+
+    const listFoods = useSelector(state=>state.listFoods)
     
+    const filterFood = (key)=>{
+        if(!key) return
+        const re = RegExp(`.*${key.toLowerCase().split('').join('.*')}.*`)
+
+        const matches = listFoods.filter(v => v.name.toLowerCase().match(re))
+        setFilterFoods(matches)
+    }
+    const handleSearchTermChange = (text)=>{
+        setSearchTerm(text)
+        if(typingTimeoutRef.current){
+            clearTimeout(typingTimeoutRef.current)
+        }
+        typingTimeoutRef.current = setTimeout(
+            ()=>{
+                filterFood(text)
+            },
+            400
+        )
+    }
+
+
 
     return(
     <View style={styles.container}>
@@ -31,14 +58,17 @@ export const Search = (props) =>
             <TextInput 
             style={styles.input}
             placeholder="Find a food..."
-            value={value}
-            onChangeText={(txt)=>setValue(txt)}
+            value={searchTerm}
+            onChangeText={handleSearchTermChange}
             leftComponent={<VectorIcon EvilIcons name={'search'} size={35} color ={Colors.red_fresh} />}
             />
             <TouchableOpacity onPress={()=>navigation.goBack()}>
                 <FText size={FontSizes.FONT_13} weight="400" color={Colors.red_fresh} >Cancel</FText>
             </TouchableOpacity>
         </View>
+        
+        <RenderResult navigation={navigation} foods ={filterFoods}/>
+
     </View>
 );
 }

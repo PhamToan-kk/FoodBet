@@ -28,7 +28,9 @@ const RenderTabProduct = React.memo((props) =>
     );
 
     const SecondRoute = () => (
-       <RenderReviews item={item}/>
+      <View style={{flex:1,paddingTop:30}}>
+            <FText size={FontSizes.FONT_13}>{item.components}</FText>
+        </View>
     );
 
 
