@@ -1,35 +1,34 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { Button, Text, View } from 'react-native';
 import { ScaledSheet, } from 'react-native-size-matters';
 import {Picker} from '@react-native-community/picker';
 import RNPickerSelect from 'react-native-picker-select';
+import io from "socket.io-client";
 
 
-const Play = React.memo( props =>{
-    // console.log('play rerender ')
-    return (<View>
-        <Text>{props.name}</Text>
-    </View>)
-}
-)
+// const Play = React.memo( props =>{
+//     // console.log('play rerender ')
+//     return (<View>
+//         <Text>{props.name}</Text>
+//     </View>)
+// }
+// )
 
 const CheckingOrder = (props) => 
 {
-    const x= 'aaaaa'
-    const [language,setLanguage] = useState(1)
-    const increase = ()=>setLanguage(language+1)
+    // const x= 'aaaaa'
+    // const [language,setLanguage] = useState(1)
+    // const increase = ()=>setLanguage(language+1)
+    useEffect(()=>{
+        const socket = io("http://localhost:3003")
+        socket.on("chat message", msg => {
+            console.log(msg)
+    });
+    })
  return(
     <View>
-        <Play name={x}/>
-        <Button
-        title="CLICKKK"
-        onPress={increase}
-        >
         
-
-        </Button>
-
-        <Text>{language}</Text>
+        <Text>12222</Text>
         
     </View>
 );}

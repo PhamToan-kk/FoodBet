@@ -17,8 +17,9 @@ import RenderAddress from './RenderAddress'
 
 const AddFood = (props) => 
 {   
-    
     const {listFoods} = useSelector(state=>state.cart)
+    console.log("Addfood Cart index",listFoods)
+
     const dispatch = useDispatch()
 
     const deleteProductOfCart = (id)=>{

@@ -10,8 +10,7 @@ const AppXX = ({
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        console.log('hhahh')
-        // dispatch(loadListFoods())
+        dispatch(loadListFoods())
     })
     const isSignIn = true
     return(

@@ -9,7 +9,10 @@ import {Colors,FontSizes} from '../../theme'
 import { ScrollView } from 'react-native-gesture-handler';
 import {useSelector, useDispatch} from 'react-redux'
 import AsyncStorage from '@react-native-community/async-storage';
-import {actUpProductToCart} from '../../redux/actions'
+import {actUpProductToCart,setFoods,loadListFoods} from '../../redux/actions'
+// import axios from 'axios'
+
+
 
 
 export const Home = (props) => 
@@ -33,6 +36,9 @@ export const Home = (props) =>
     useEffect(()=>{
         getFoodsCart()
     },[])
+
+   
+  
 
 return(
     <LinearGradient
