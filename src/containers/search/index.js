@@ -36,17 +36,21 @@ export const Search = (props) =>
 
         const matches = listFoods.filter(v => v.name.toLowerCase().match(re))
         setFilterFoods(matches)
+        // console.log('key',key)
     }
     const handleSearchTermChange = (text)=>{
         setSearchTerm(text)
         if(typingTimeoutRef.current){
             clearTimeout(typingTimeoutRef.current)
         }
+
         typingTimeoutRef.current = setTimeout(
             ()=>{
                 filterFood(text)
-            },
-            400
+
+            }
+            ,
+            1000
         )
     }
 
@@ -88,7 +92,8 @@ const styles = ScaledSheet.create({
     input:{
         width:'85%',
         borderRadius:10,
-        backgroundColor:Colors.white
+        backgroundColor:Colors.white,
+        color:'black'
     }
 }
 )

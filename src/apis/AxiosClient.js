@@ -1,10 +1,11 @@
 import axios from 'axios';
 import queryString from 'query-string';
 import { AsyncStorageService } from '../services/asyncStorageService'
+import Config from 'react-native-config';
 
-
+const baseURL = Config.BASE_URL
 const axiosClient = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: baseURL,
   headers: {
     'content-type': 'application/json',
   },
@@ -42,15 +43,18 @@ axiosClient.interceptors.response.use((response) => {
   const originalRequest = err.config;
   console.log('originalRequest',originalRequest)
   console.log('status ',err.response.status)
+  console.log('err-data ',err.response.data)
+  alert(err.response.data.error.message)
 
-  if(err.response.status === 401 && originalRequest.url==="/authen/refeshToken"){
-    return Promise.reject(error);
+
+  if(err.response.status === 401 && originalRequest.url==="/authen/login" ){
+    return Promise.reject(err.response.data);
   }
-  if(err.response.status === 401 && originalRequest.url!=="/authen/refeshToken"){
+  if(err.response.status === 401 && originalRequest.url!=="/authen/refeshToken" ){
     const refreshToken = await AsyncStorageService.getRefreshToken()
 
     console.log('resfreshToken-',refreshToken)
-    return axios.post('http://localhost:3000' + '/authen/refreshToken',
+    return axios.post(baseURL + '/authen/refreshToken',
            {
                "refreshToken": refreshToken
            })

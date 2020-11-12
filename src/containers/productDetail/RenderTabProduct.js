@@ -37,7 +37,7 @@ const RenderTabProduct = React.memo((props) =>
     const [index, setIndex] = React.useState(0);
     const [routes] = React.useState([
       { key: 'first', title: 'Detail' },
-      { key: 'second', title: 'Review' },
+      { key: 'second', title: 'Components' },
 
     ]);
 

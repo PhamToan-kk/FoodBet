@@ -5,13 +5,11 @@ import {
     ImageBackground,
      Image, 
      KeyboardAvoidingView
-    
 } from 'react-native';
 import { ScaledSheet, } from 'react-native-size-matters';
 import { withFormik,Formik } from 'formik'
 import * as Yup from 'yup'
 import { Styles } from '../../styles'
-
 import {
     FText ,
     VectorIcon,
@@ -20,18 +18,24 @@ import {
     MoveIcon,
     FTextInput
 } from '../../components'
-
+import{useDispatch} from 'react-redux'
+import { actRegister} from '../../redux/actions'
 import {Colors, FontSizes} from '../../theme'
 
 const SignUpForm = ({
     navigation,
-}) => (
+}) => 
+{
+    const dispatch = useDispatch()
+    
+    return(
     <Formik 
     initialValues={{ username: '',password:'',mobile:''}}
     validationSchema={SignUnschema}
     onSubmit={(values,actions) => {
-    actions.resetForm()
-    alert(values.username +"__"+ values.password +" " + values.mobile)
+    // actions.resetForm()
+    // alert(values.username +"__"+ values.password +" " + values.mobile)
+    dispatch(actRegister(values.username,values.password,values.mobile))
                 }}
     >
         {({ handleChange, handleBlur, handleSubmit, values ,errors,touched})=>(
@@ -93,7 +97,7 @@ const SignUpForm = ({
         )}
     </Formik>
 );
-
+}
 
 const SignUnschema = Yup.object({
     username:Yup.string()

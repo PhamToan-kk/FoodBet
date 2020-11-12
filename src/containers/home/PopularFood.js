@@ -49,11 +49,13 @@ const PopularFood = (props) =>
                         type='custom'
                         ratingColor={Colors.red_fresh}
                         ratingBackgroundColor={Colors.opacity_gray}
+                        startingValue={5}
+
                         ratingCount={5}
                         imageSize={10}
                         style={{ marginLeft:1,width:50 }}
                         isDisabled
-                        defaultRating={1}
+                        defaultRating={5}
                         />
                     </View>
                     <FText size={FontSizes.FONT_11} weight="500" >${item.price}</FText>

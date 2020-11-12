@@ -1,6 +1,7 @@
 import axios from 'axios';
 import * as types from '../../constants'
 import {store} from '../store'
+import {foodApi} from '../../apis/foodApi'
 
 export const actSetFoods = (foods) => {
     return{
@@ -9,23 +10,12 @@ export const actSetFoods = (foods) => {
     }
 }
 
-// export const actAddToCart = (product,amount)=>{
-//     return{
-//         type:types.ADD_TO_CART,
-//         product,
-//         amount
-//     }
-// }
+
 
 
 export const actLoadListFoods = () => {
     return dispatch => {
-        axios.get('http://192.168.3.102:3000/foods/getFoods')
-            .then(function (response) {
-                console.log('response in action loadlistfoods',response.data)
-                // handle success
-                return response.data
-            })
+            foodApi.loadFoods()
             .then((data)=>{
                 dispatch(actSetFoods(data))
             })
@@ -35,7 +25,7 @@ export const actLoadListFoods = () => {
             })
             .then(function () {
                 // always executed
-                console.log("store in action",store.getState());
+                // console.log("store in action",store.getState());
 
             });
     }

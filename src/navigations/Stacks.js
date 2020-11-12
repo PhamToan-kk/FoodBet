@@ -11,6 +11,9 @@ import {
     
   } from '../containers';
   import {createStackNavigator} from '@react-navigation/stack';
+  import {store} from '../redux/store'
+  import {useSelector, useDispatch} from 'react-redux'
+  import {actLoadListFoods,} from '../redux/actions'
 
   import {TabsNavigator} from './Tabs'
   const AuthStack = createStackNavigator();
@@ -30,7 +33,13 @@ import {
 
 
   export const MainStackScreens = ()=>{
-   
+      const dispatch = useDispatch()
+
+      useEffect(()=>{
+          dispatch(actLoadListFoods())
+          console.log(store.getState())
+      })
+    
     return(
         <MainStack.Navigator
         initialRouteName="Main"

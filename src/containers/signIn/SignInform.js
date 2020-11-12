@@ -11,7 +11,8 @@ import { ScaledSheet, } from 'react-native-size-matters';
 import { withFormik,Formik } from 'formik'
 import * as Yup from 'yup'
 import { Styles } from '../../styles'
-
+import {useSelector,useDispatch} from 'react-redux'
+import {actSignIn} from '../../redux/actions'
 import {
     FText ,
     VectorIcon,
@@ -24,14 +25,24 @@ import {
 import {Colors, FontSizes} from '../../theme'
 
 
-const SignInForm = ({username,password})=>(
+const SignInForm = ()=>
+
+{
+    const dispatch = useDispatch()
+    const signIn = (username,password)=>{
+            dispatch(actSignIn(username,password))
+        
+    }
+    return(
     <Formik
-                initialValues={{ username: username,password:password}}
+                initialValues={{ username: "",password:""}}
                 validationSchema={SignInschema}
                 onSubmit={(values,actions) => {
-                actions.resetForm()
-                alert(values.username +"__"+ values.password)
-                }}
+                // actions.resetForm()
+                    signIn(values.username,values.password)
+               
+                }
+                }
             >
                 {({ handleChange, handleBlur, handleSubmit, values ,errors,touched}) => (
                 <View style={{justifyContent:'center',marginTop:5}}>
@@ -74,7 +85,7 @@ const SignInForm = ({username,password})=>(
                 )}
             </Formik>
 )
-
+}
 
 const SignInschema = Yup.object({
     username:Yup.string()

@@ -16,10 +16,9 @@ import { Styles } from '../../styles'
 
 const RenderResult = (props) => {
         const { navigation,foods} = props
-
         const renderFoodItem = ({item})=>
         { 
-            console.log('item',item)
+            // console.log('item',item)
         return(
                 <TouchableOpacity key={item.id} onPress={()=>navigation.navigate('ProductDetail',{item:item})}>
                     <Morph style={styles.itemContainer}>
@@ -104,4 +103,4 @@ const styles = ScaledSheet.create({
     
 })
 
-export default RenderResult;
+export default React.memo(RenderResult);

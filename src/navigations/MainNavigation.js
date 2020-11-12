@@ -7,15 +7,12 @@ import {actLoadListFoods,} from '../redux/actions'
 import axios from 'axios'
 const AppXX = ({
 }) => {
-    const dispatch = useDispatch()
-
-    useEffect(()=>{
-        dispatch(actLoadListFoods())
-    })
-    const isSignIn = true
+    // const role = useSelector(state=>state.userInfo.role)
+    // const isSignIn = true
+    const role = "customer"
     return(
         <NavigationContainer>
-               {isSignIn ?  <MainStackScreens/> : <AuthStackScreens/> }
+               {role =="customer" ?  <MainStackScreens/> : <AuthStackScreens/> }
         </NavigationContainer>
     
     )

@@ -65,7 +65,6 @@ const BestFood = (props) =>
                                     <FText size={FontSizes.FONT_10}>4.5</FText>
                                     <Rating
                                     startingValue={5}
-
                                     type='custom'
                                     ratingColor={Colors.red_fresh}
                                     ratingBackgroundColor={Colors.opacity_gray}

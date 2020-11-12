@@ -7,4 +7,6 @@ export const DECREASE_AMOUNT_PRODUCT = "DECREASE_AMOUNT_PRODUCT"
 
 
 export const SET_FOODS = "SET_FOODS"
+export const SET_USER_INFOR = "SET_USER_INFOR"
+
 
