@@ -15,38 +15,6 @@ import { Rating, AirbnbRating } from 'react-native-ratings';
 import { Styles } from '../../styles'
 
 
-const data = [
-    {
-        id:7,
-        name:'grill salmon',
-        url:"https://www.pennmedicine.org/-/media/images/miscellaneous/food%20and%20drink/colorful_plate.ashx?mw=620&mh=408",
-        price:22.22,
-        intro:"Futo means large. So Futo Maki are large rolls of rice wrapped around several fillings with nori on the inside and often sesame seeds on the outcies. There are normally 10 pieces in a roll. A common examples is a California roll with crab, cucmber and avocado.",
-        components: "100gam meat ,20gam sugar, 20gam vegetable"
-
-    },
-    {
-        id:8,
-        name:'grill salmon',
-        url:"https://images.blogthings.com/whatthanksgivingleftoversareyouquiz/plate-of-food.jpg",
-        price:23.22,
-        intro:"Futo means large. So Futo Maki are large rolls of rice wrapped around several fillings with nori on the inside and often sesame seeds on the outcies. There are normally 10 pieces in a roll. A common examples is a California roll with crab, cucmber and avocado.",
-        components: "100gam meat ,20gam sugar, 20gam vegetable"
-
-    },
-    {
-        id:9,
-        name:'grill salmonW',
-        url:"https://znews-photo.zadn.vn/w660/Uploaded/kbd_bcvi/2019_09_29/tai_xuong.jpg",
-        price:22.22,
-        intro:"Futo means large. So Futo Maki are large rolls of rice wrapped around several fillings with nori on the inside and often sesame seeds on the outcies. There are normally 10 pieces in a roll. A common examples is a California roll with crab, cucmber and avocado.",
-        components: "100gam meat ,20gam sugar, 20gam vegetable"
-
-
-    }
-]
-
-
 
 const BestFood = (props) => 
 {

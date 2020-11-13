@@ -20,7 +20,9 @@ const RenderResult = (props) => {
         { 
             // console.log('item',item)
         return(
-                <TouchableOpacity key={item.id} onPress={()=>navigation.navigate('ProductDetail',{item:item})}>
+                <TouchableOpacity key={item.id} 
+                // onPress={()=>navigation.navigate('ProductDetail',{item:item})}
+                >
                     <Morph style={styles.itemContainer}>
                         <View style={styles.foodContainer}>
                             <Image style={styles.foodImg} source={{uri:item.url}}/>
