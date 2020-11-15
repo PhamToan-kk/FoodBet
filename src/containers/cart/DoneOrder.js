@@ -1,61 +1,114 @@
-import React,{useEffect, useState} from 'react';
-import { Text, View ,Button,FlatList,Image} from 'react-native';
+import React,{useState,useEffect} from 'react';
 import { ScaledSheet, } from 'react-native-size-matters';
-import AsyncStorage from '@react-native-community/async-storage';
+import {useSelector} from 'react-redux'
+import {orderApi} from '../../apis/OrderApi'
+import { 
+    View ,
+    FlatList,
+    TouchableOpacity ,
+    ActivityIndicator,
+    Image} from 'react-native';
+import {Colors,FontSizes} from '../../theme'
+import { Styles } from '../../styles'
+import {
+    FText ,
+    VectorIcon,
+    Morph,
+    HeartIcon,
+    FTextInput,
+    MoveIcon,
+} from '../../components'
 
-
-const data = [
-    {id:1,name:'toan',age:'1',url:"https://www.pennmedicine.org/-/media/images/miscellaneous/food%20and%20drink/colorful_plate.ashx?mw=620&mh=408",},
-    {id:2,name:'toan',age:'1',url:"https://www.pennmedicine.org/-/media/images/miscellaneous/food%20and%20drink/colorful_plate.ashx?mw=620&mh=408",},
-    {id:3,name:'toan',age:'1',url:"https://www.pennmedicine.org/-/media/images/miscellaneous/food%20and%20drink/colorful_plate.ashx?mw=620&mh=408",},
-    {id:4,name:'toan',age:'1',url:"https://www.pennmedicine.org/-/media/images/miscellaneous/food%20and%20drink/colorful_plate.ashx?mw=620&mh=408",},
-    {id:5,name:'toan',age:'1',url:"https://www.pennmedicine.org/-/media/images/miscellaneous/food%20and%20drink/colorful_plate.ashx?mw=620&mh=408",},
-    {id:6,name:'toan',age:'1',url:"https://www.pennmedicine.org/-/media/images/miscellaneous/food%20and%20drink/colorful_plate.ashx?mw=620&mh=408",},
-    {id:7,name:'toan',age:'1',url:"https://www.pennmedicine.org/-/media/images/miscellaneous/food%20and%20drink/colorful_plate.ashx?mw=620&mh=408",},
-    {id:8,name:'toan',age:'1',url:"https://www.pennmedicine.org/-/media/images/miscellaneous/food%20and%20drink/colorful_plate.ashx?mw=620&mh=408",},
-
-]
-const DoneOrder = ({
-    params,
-}) => 
+const DoneOrder = (props) => 
 {
-    useEffect(()=>{
-     console.log('rerender vip')   
-    })
-    const [datas,setDatas] = useState(data)
-    const deleteItem= (index)=>{
-         datas.splice(index,1)
-         setDatas([...datas])
+    const{navigation} = props
+    const {id} = useSelector(state=>state.userInfo)
+    const [data,setData] = useState([])
+    const getData = ()=>{
+        const params = {
+            customerId : id
+        }
+        orderApi.getOrderActivedNotFinish(params)
+        .then(resj=>{
+            setData(resj)
+            console.log('response',resj)
+        })
+        .catch(err=>console.log(err))
     }
-    const renderItem=({item,index})=>(
-        <View style={{width:200,height:150,marginBottom:20}}>
-            <Text>{item.id}</Text>
-            <Text>{item.name}</Text>
-            <Image
-                source={{uri:item.url}}
-                style={{width:100,height:100}}
-            />
-            <Text>indeex:{index}</Text>
-            <Button
-            title={'delete'}
-            onPress={()=>deleteItem(index)}
-            ></Button>
-        </View>
+    useEffect(()=>{
+        getData()
+    },[])
+    const renderItem = ({item})=>(
+        <TouchableOpacity 
+        style={[styles.orderItem,{backgroundColor:Colors.Bright_Turquoise}]}
+        onPress={()=>navigation.navigate('OrderDetail',{item:item})}
+        >
+            <View style={styles.leftItem}>
+                <View style={styles.imgView}>
+                    <Image style={styles.img} source={require('../../assets/icons/orderIcon.png')}/>
+                </View>
+            </View>
+            <View style={styles.rightItem}>
+                <FText style={styles.orderName}>Order {item.name}</FText>
+                <FText>Customer: {item.customername}</FText>
+                <FText>Cost: {item.paymenttotal}$</FText>
+                <FText>Active: {item.isactive ? "done":"no"}</FText>
+                <FText>{item.time}</FText>
+                <MoveIcon/>
+            </View>
+        </TouchableOpacity>
     )
-    
  return(
-    <View>
-        <Text>00</Text>
+    <View style={styles.container}>
         <FlatList
-            data={datas}
-            keyExtractor={(item)=>item.id.toString()}
+            data={data}
+            keyExtractor={(item,index)=>item._id}
             renderItem={renderItem}
+            ItemSeparatorComponent={()=> (<View style={{height:3,backgroundColor:'white'}}/>)}
+
         />
     </View>
 );}
 const styles = ScaledSheet.create({
     container:{
-        flex:1
+        flex:1,
+        paddingTop:15
+    },
+    orderItem:{
+        width:'100%',
+        height:'100@s',
+        // backgroundColor:Colors.red_fresh_opacity,
+        flexDirection:'row'
+    },
+    leftItem:{
+        flex:1,
+        ...Styles.center_center
+    },
+    rightItem:{
+        flex:2,
+        paddingHorizontal:10,
+        paddingTop:10
+    },
+    img:{
+        width:'50@s',
+        height:'50@s',
+        borderRadius:999,
+        resizeMode:'contain'
+    },  
+    loader:{
+        marginTop:10,
+        alignItems:'center'
+    },
+    imgView:{
+        width:'90@s',
+        height:'90@s',
+        backgroundColor:'white',
+        ...Styles.center_center,
+        borderRadius:99
+    },
+    orderName:{
+        fontSize:FontSizes.FONT_15,
+        fontWeight:'300'
     }
 })
 export default DoneOrder;

@@ -5,11 +5,12 @@ import {store} from '../redux/store'
 import {useSelector, useDispatch} from 'react-redux'
 import {actLoadListFoods,} from '../redux/actions'
 import axios from 'axios'
+
 const AppXX = ({
 }) => {
-    // const role = useSelector(state=>state.userInfo.role)
+    const role = useSelector(state=>state.userInfo.role)
     // const isSignIn = true
-    const role = "customer"
+    // const role = "customer"
     return(
         <NavigationContainer>
                {role =="customer" ?  <MainStackScreens/> : <AuthStackScreens/> }

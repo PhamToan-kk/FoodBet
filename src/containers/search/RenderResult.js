@@ -21,7 +21,7 @@ const RenderResult = (props) => {
             // console.log('item',item)
         return(
                 <TouchableOpacity key={item.id} 
-                // onPress={()=>navigation.navigate('ProductDetail',{item:item})}
+                onPress={()=>navigation.navigate('ProductDetail',{item:item})}
                 >
                     <Morph style={styles.itemContainer}>
                         <View style={styles.foodContainer}>
@@ -64,7 +64,7 @@ const RenderResult = (props) => {
   return (
     <FlatList
       data={foods}
-      keyExtractor={(item) => item.name}
+      keyExtractor={(item) => item._id}
       renderItem={renderFoodItem}
     />
   );

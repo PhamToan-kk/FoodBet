@@ -7,14 +7,15 @@ import {
     Map,
     SignIn,
     SignUp,
-    ProductDetail
+    ProductDetail,
+    OrderDetail
     
   } from '../containers';
   import {createStackNavigator} from '@react-navigation/stack';
   import {store} from '../redux/store'
-  import {useSelector, useDispatch} from 'react-redux'
-  import {actLoadListFoods,} from '../redux/actions'
-
+  import { useDispatch} from 'react-redux'
+  import {actLoadListFoods,actLoadOtherInfoAccount} from '../redux/actions'
+  
   import {TabsNavigator} from './Tabs'
   const AuthStack = createStackNavigator();
   const MainStack = createStackNavigator()
@@ -37,7 +38,9 @@ import {
 
       useEffect(()=>{
           dispatch(actLoadListFoods())
-          console.log(store.getState())
+          dispatch(actLoadOtherInfoAccount())
+
+          console.log('store start',store.getState())
       })
     
     return(
@@ -51,6 +54,7 @@ import {
             <MainStack.Screen component={Search} name={'Search'} />
             <MainStack.Screen component={ProductDetail} name={'ProductDetail'} />
             <MainStack.Screen component={Cart} name={'Cart'} />
+            <MainStack.Screen component={OrderDetail} name={'OrderDetail'} />
 
             
         </MainStack.Navigator>

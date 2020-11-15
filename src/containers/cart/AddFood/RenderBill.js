@@ -24,7 +24,7 @@ const RenderBill = (props) =>
         shipCost,
         discount,
     }= props
-    const [method,setMethod] = useState('On Card')
+    // const [method,setMethod] = useState('On Card')
 
     return(
     <View style={styles.container}>
@@ -43,58 +43,21 @@ const RenderBill = (props) =>
                 <Divider />
                 <View style={styles.lineBill}>
                     <FText style={styles.keyBill}>Discount</FText>
-                    <FText style={styles.keyBill}>$ {discount * totalPrice}</FText>
+                    <FText style={styles.keyBill}>$ {discount }</FText>
                 </View>
                 <Divider />
                 <View style={[styles.lineBill]}>
                     <FText style={[styles.keyBill,{fontWeight:'400'}]}>Total</FText>
                     <FText style={styles.keyBill}>$ {
-                        totalPrice + shipCost - discount * totalPrice
+                        totalPrice + shipCost - discount 
                     }
                     </FText>
                 </View>
                 <Divider />
                 <View style={styles.lineBill}>
                     <FText style={[styles.keyBill,{fontWeight:'400'}]}>Payment method</FText>
-                    <RNPickerSelect
-                        placeholder={{}}
-                        onValueChange={(value) => setMethod(value)}
-                        items={[
-                            { label: 'On Card', value: 'football' },
-                            { label: 'When reveiving', value: 'baseball' },
-                        ]}
-                        value={method}
+                    <FText style={[styles.keyBill,{fontWeight:'400',color:Colors.greenLight}]}>When received</FText>
 
-                        style={{
-                        ...pickerSelectStyles,
-                        iconContainer: {
-                            top: 20,
-                            right: 10,
-                        },
-                        placeholder: {
-                            color: 'purple',
-                            fontSize: 12,
-                            fontWeight: 'bold',
-                        },
-                        }}
-                        Icon={() => {
-                        return (
-                            <View
-                            style={{
-                                backgroundColor: 'transparent',
-                                borderTopWidth: 10,
-                                borderTopColor: 'gray',
-                                borderRightWidth: 10,
-                                borderRightColor: 'transparent',
-                                borderLeftWidth: 10,
-                                borderLeftColor: 'transparent',
-                                width: 0,
-                                height: 0,
-                            }}
-                            />
-                        );
-                        }}
-                    />
                 </View>
             </Morph>
         </View>

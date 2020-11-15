@@ -79,6 +79,7 @@ export const Colors = {
     genoa: "#188065",
     athensGray: "#F7F8FA",
 
+    blueNoti:'rgb(232,243,254)',
 
     /////
     hawkesBlue:'#DDE7FC',
@@ -110,6 +111,7 @@ export const Colors = {
     Linear_white4:'rgb(238,238,238)',
     Linear_white5:'rgb(245,245,245)',
     Linear_white6:'rgb(250,250,250)',
+    Bright_Turquoise_opaci: 'rgb(109, 175, 162,0.9)',
 
 
 

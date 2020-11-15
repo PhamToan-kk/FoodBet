@@ -11,7 +11,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import AsyncStorage from '@react-native-community/async-storage';
 import {actUpProductToCart,setFoods,loadListFoods} from '../../redux/actions'
 // import axios from 'axios'
-
+import { store} from '../../redux/store'
 
 
 
@@ -21,9 +21,9 @@ export const Home = (props) =>
     const listFoods = useSelector(state=>state.listFoods)
     const popularFood = listFoods.filter(item=>item.type=="popular")
     const bestFood = listFoods.filter(item=>item.type=="best")
-
+    // console.log('store',store.getState())
     useEffect(()=>{
-        console.log('home')
+        // console.log('home')
     },[])
 
    

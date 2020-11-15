@@ -18,6 +18,7 @@ export const actSetUserInfor = (data) => {
 export const actSignIn = (username,password) => {
     return async (dispatch) => {
            const data = await authApi.login(username,password)
+           console.log('data',data)
             dispatch(actSetUserInfor(data))
            
     }

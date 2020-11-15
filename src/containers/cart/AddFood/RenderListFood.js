@@ -31,7 +31,7 @@ const RenderListFood = (props) =>
         <View>
             <FText h4 style={styles.header}>Your Order</FText>
             { listCartFood.length !== 0 ? listCartFood.map((item)=>(
-            <Morph style={styles.foodItem} key={item.product.id}>
+            <Morph style={styles.foodItem} key={item.product._id}>
             <View style={{flex:1,flexDirection:'row'}}>
                 <Image style={styles.image} source={{uri:item.product.url}}/>
                 <View style = {styles.foodInfor}>
@@ -40,17 +40,17 @@ const RenderListFood = (props) =>
                             <FText h4 semibold>{item.product.name}</FText>
                             <FText h4 >${item.product.price}</FText>
                         </View>
-                        <TouchableOpacity onPress={()=>onDeleteProduct(item.product.id)}>
+                        <TouchableOpacity onPress={()=>onDeleteProduct(item.product._id)}>
                             <VectorIcon FontAwesome name ="trash-o" size={25} color={Colors.gray}/>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.changeAmount}>
                         <Morph style={styles.fixCount}>
-                            <TouchableOpacity onPress={()=>decreaseAmount(item.product.id)}>
+                            <TouchableOpacity onPress={()=>decreaseAmount(item.product._id)}>
                                 <VectorIcon Entypo name="minus" size={17} color={Colors.red_fresh}/>
                             </TouchableOpacity>
                             <FText size={FontSizes.FONT_13} color={Colors.green}>{item.amount}</FText>
-                            <TouchableOpacity onPress={()=>increaseAmount(item.product.id)}>
+                            <TouchableOpacity onPress={()=>increaseAmount(item.product._id)}>
                                 <VectorIcon Entypo name="plus" size={17} color={Colors.red_fresh}/>
                             </TouchableOpacity>
                         </Morph>

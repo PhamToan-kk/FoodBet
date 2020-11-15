@@ -64,11 +64,11 @@ export const Cart = (props) =>
     );
 
     const SecondRoute = () => (
-        <CheckingOrder/>
+        <CheckingOrder navigation={navigation}/>
     );
 
     const ThirdRoute = () => (
-        <DoneOrder/>
+        <DoneOrder navigation={navigation}/>
         );
 
     const [index, setIndex] = React.useState(0);
@@ -107,6 +107,7 @@ export const Cart = (props) =>
         renderScene={renderScene}
         onIndexChange={setIndex}
         initialLayout={initialLayout}
+        lazy={true}
         />
       <ReturnButton  style={styles.returnBtn} event={()=>navigation.goBack()}/>  
     </View>

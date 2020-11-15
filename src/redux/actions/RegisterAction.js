@@ -11,7 +11,7 @@ export const actRegister = (username,password,phone) => {
            authApi.register(username,password,phone)
            .then(
                (data)=>  {
-                   console.log('data register',data)
+                //    console.log('data register',data)
                    alert(`${data.saveUser.username} register successful !`)
                 }
 

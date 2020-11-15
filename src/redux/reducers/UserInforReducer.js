@@ -15,7 +15,7 @@ const initialState = {
 
 
 const userInforReducer = (state = initialState, actions) => {
-    console.log('action set users',actions)
+    // console.log('action set users 111',actions)
     const newUser = {...state.user}
     switch (actions.type) {
         case types.SET_USER_INFOR:
@@ -23,7 +23,6 @@ const userInforReducer = (state = initialState, actions) => {
             newUser.id = actions.id
             newUser.phone = actions.phone
             newUser.role = actions.role
-
             return newUser;
         default:
             return {...state}

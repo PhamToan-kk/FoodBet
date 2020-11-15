@@ -40,3 +40,11 @@ export const actDecreaseAmountProduct = (productId)=>{
     }
 }
 
+export const actClearCart= ()=>{
+    return{
+        type:types.CLEAR_CART,
+    }
+}
+
+
+

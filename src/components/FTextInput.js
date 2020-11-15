@@ -50,6 +50,7 @@ export const FTextInput = (props) =>
         onBlur,
         fontSize,
         autoCapitalize,
+        value,
         rest
     } = props
     const [secureTextEntry, setSecureTextEntry] = useState(password);
@@ -58,6 +59,7 @@ export const FTextInput = (props) =>
     <View style={[styles.container,style]}>
         {leftComponent && <View style={{marginHorizontal:5}}>{leftComponent}</View>}
         <TextInput
+            value={value}
             keyboardType={keyboardType}
             placeholder={placeholder}
             placeholderTextColor={Colors.gray}

@@ -29,7 +29,7 @@ const storeFoods = async (value) => {
 const cartReducer = (state=initialState,action)=>{
     
     const listProducts = state.listFoods.map((item)=>item.product)
-    const listProductIds = state.listFoods.map((item)=>item.product.id)
+    const listProductIds = state.listFoods.map((item)=>item.product._id)
 
     const newListFood =[...state.listFoods]
     const indexProduct = listProducts.indexOf(action.product)
@@ -37,7 +37,7 @@ const cartReducer = (state=initialState,action)=>{
 
     switch(action.type){
         case types.ADD_TO_CART:
-            if(listProductIds.includes(action.product.id)){
+            if(listProductIds.includes(action.product._id)){
                 newListFood[indexProduct].amount += action.amount
             }else{
                 newListFood.push({
@@ -59,7 +59,7 @@ const cartReducer = (state=initialState,action)=>{
             }
             break;
         case types.DELETE_PRODUCT_OF_CART:
-            const productNeed = newListFood.find((x)=>x.product.id === action.productId)
+            const productNeed = newListFood.find((x)=>x.product._id === action.productId)
             const remainFoods = _.pull(newListFood,productNeed)
             return{
                 ...state,
@@ -72,6 +72,7 @@ const cartReducer = (state=initialState,action)=>{
                 ...state,
                 listFoods:newListFood
             }
+            break;
         case types.DECREASE_AMOUNT_PRODUCT:   
           
             if(newListFood[indexOfProduct].amount >=2)
@@ -81,7 +82,14 @@ const cartReducer = (state=initialState,action)=>{
             return{
                 ...state,
                 listFoods:newListFood
-            }            
+            } 
+            break;
+        case types.CLEAR_CART:{
+            return{
+                ...state,
+                listFoods:[]
+            }
+        }           
         
             
 

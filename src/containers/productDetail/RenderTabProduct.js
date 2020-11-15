@@ -15,7 +15,6 @@ import {Colors,FontSizes} from '../../theme'
 
 import { Styles } from '../../styles'
 import { FText } from '../../components';
-import RenderReviews from './RenderReviews'
 
 
 const RenderTabProduct = React.memo((props) => 

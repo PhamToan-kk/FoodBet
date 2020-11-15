@@ -29,7 +29,8 @@ const RenderEditAmount = (props)=>
       if(amount >= 1) setAmount(amount-1)
 
   }
-  const addFoodToCart = (product)=>{
+  const addFoodToCart = (product,amount)=>{
+        // console.log('product detail renderdetaiitem',product,amount)
         onAddToCart(product,amount)
         setAmount(1)
   }
@@ -45,7 +46,7 @@ const RenderEditAmount = (props)=>
               </TouchableOpacity>
           </Morph>
           <TouchableOpacity 
-          onPress = {()=>addFoodToCart(item)}
+          onPress = {()=>addFoodToCart(item,amount)}
            >
               <Morph style={styles.btnAddToCart}>
                   <FText h4 weight="400" color={Colors.white} numberOfLines={3}>Add To Cart</FText>

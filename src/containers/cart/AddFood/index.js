@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import { Text, View,FlatList,Image,TouchableOpacity,StyleSheet} from 'react-native';
+import { Text, View,Alert} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ScaledSheet, } from 'react-native-size-matters';
 import _ from 'lodash';
@@ -9,16 +9,76 @@ import {useSelector, useDispatch} from 'react-redux'
 import {
     actDeleteProductOfCart,
     actDecreaseAmountProduct,
-    actIncreaseAmountProduct
+    actIncreaseAmountProduct,
+    actClearCart
 } from '../../../redux/actions'
 import RenderSubmitBtn from './RenderSubmitBtn'
 import RenderAddress from './RenderAddress'
+import {orderApi} from '../../../apis/OrderApi'
+
 
 
 const AddFood = (props) => 
 {   
+    const [totalPrice,setTotalPrice] = useState(0)
+    
     const {listFoods} = useSelector(state=>state.cart)
-    console.log("Addfood Cart index",listFoods)
+    const {
+        username,
+        phone,
+        id
+    } = useSelector(state=>state.userInfo)
+    const {
+        address,
+        discountPercent,
+        distance,
+        shipPrice,
+        note
+    } = useSelector(state=>state.otherInfo)
+
+    const foodOrderSubmit = listFoods.map(
+        (i)=>{
+            return{
+                namefood:i.product.name,
+                price:i.product.price,
+                amount:i.amount
+            }
+        }
+    )
+
+    const OrderSubmit = {
+        customername:username,
+        customerid:id,
+        order:foodOrderSubmit,
+        shipcost:distance*shipPrice,
+        paymenttotal:totalPrice*(1-(discountPercent/100)) + distance*shipPrice,
+        address:address,
+        phone:phone,
+        note:note,
+    }    
+
+    const sendOrder =()=>{
+        if(foodOrderSubmit.length == 0) {
+            alert('Please add food to your cart')
+            return
+        }
+       orderApi.addOrder(OrderSubmit)
+       .then((res)=> {
+        //    console.log(res)
+           Alert.alert(
+            "Notification",
+            "Order Successful!",
+            [
+              
+              { text: "OK", }
+            ],
+            { cancelable: false }
+          );           
+          dispatch(actClearCart())
+       } )
+       .catch(err=>console.log('err order',err))
+
+    }
 
     const dispatch = useDispatch()
 
@@ -31,7 +91,6 @@ const AddFood = (props) =>
     const decreaseAmount = (productId)=>{
       dispatch(actDecreaseAmountProduct(productId))
     }
-    const [totalPrice,setTotalPrice] = useState(0)
     const setTotal = ()=>{
         if(listFoods.length>0){
             const totalMoney = _.sumBy(listFoods, function(o) { return o.product.price * o.amount; })
@@ -39,6 +98,8 @@ const AddFood = (props) =>
         }
         
     }
+
+
     useEffect(()=>{
        setTotal()
     },[listFoods])
@@ -47,7 +108,7 @@ const AddFood = (props) =>
     return(
         <View style={styles.container}>
             <View  style={{flex:7}}>
-                <RenderAddress/>
+                <RenderAddress />
                 <ScrollView>     
                     <RenderListFood 
                     onDeleteProduct={deleteProductOfCart} 
@@ -57,14 +118,14 @@ const AddFood = (props) =>
                     />
                     <RenderBill 
                     totalPrice={totalPrice}
-                    shipCost={12}
-                    discount = {5/100}
+                    shipCost={shipPrice * distance}
+                    discount = {(discountPercent/100)*totalPrice}
 
                     />
                 </ScrollView>
             </View>
             <View  style={{flex:1}}>
-                <RenderSubmitBtn name="Order"/>
+                <RenderSubmitBtn name="Order" onPress={sendOrder}/>
             </View>
 
         </View>

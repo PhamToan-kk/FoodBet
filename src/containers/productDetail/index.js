@@ -27,8 +27,10 @@ export const ProductDetail = (props) =>
     } = props
 
     const {item} = route.params
+    
     const dispatch = useDispatch()
     const onAddToCart = (product,amount)=>{
+        // console.log('index product detail',product,amount)
         dispatch(actAddToCart(product,amount))
     }
 
