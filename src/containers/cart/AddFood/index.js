@@ -17,11 +17,10 @@ import RenderAddress from './RenderAddress'
 import {orderApi} from '../../../apis/OrderApi'
 
 
-
 const AddFood = (props) => 
 {   
     const [totalPrice,setTotalPrice] = useState(0)
-    
+    const dispatch = useDispatch()
     const {listFoods} = useSelector(state=>state.cart)
     const {
         username,
@@ -45,7 +44,6 @@ const AddFood = (props) =>
             }
         }
     )
-
     const OrderSubmit = {
         customername:username,
         customerid:id,
@@ -62,25 +60,28 @@ const AddFood = (props) =>
             alert('Please add food to your cart')
             return
         }
-       orderApi.addOrder(OrderSubmit)
-       .then((res)=> {
-        //    console.log(res)
-           Alert.alert(
-            "Notification",
-            "Order Successful!",
-            [
-              
-              { text: "OK", }
-            ],
-            { cancelable: false }
-          );           
-          dispatch(actClearCart())
-       } )
-       .catch(err=>console.log('err order',err))
+        // socket.emit("customer_send_order", "noti")
+
+        orderApi.addOrder(OrderSubmit)
+        .then((res)=> {
+            Alert.alert(
+                "Notification",
+                "Order Successful!",
+                [
+                
+                { text: "OK", }
+                ],
+                { cancelable: false }
+            );           
+            dispatch(actClearCart())
+
+        } )
+        .catch(err=>console.log('err order',err))
+
+       
 
     }
 
-    const dispatch = useDispatch()
 
     const deleteProductOfCart = (id)=>{
       dispatch(actDeleteProductOfCart(id))
@@ -91,6 +92,7 @@ const AddFood = (props) =>
     const decreaseAmount = (productId)=>{
       dispatch(actDecreaseAmountProduct(productId))
     }
+
     const setTotal = ()=>{
         if(listFoods.length>0){
             const totalMoney = _.sumBy(listFoods, function(o) { return o.product.price * o.amount; })
@@ -99,10 +101,12 @@ const AddFood = (props) =>
         
     }
 
-
     useEffect(()=>{
        setTotal()
+       
+    //    setSocket(io(BASE_URL)) 
     },[listFoods])
+
 
 
     return(

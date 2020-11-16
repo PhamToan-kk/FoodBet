@@ -1,4 +1,4 @@
-import React ,{useState}from 'react';
+import React ,{useState,useEffect}from 'react';
 import { Text, View,Dimensions } from 'react-native';
 import { Styles } from '../../styles';
 import { ScaledSheet, } from 'react-native-size-matters';
@@ -16,31 +16,19 @@ import {
   actDeleteProductOfCart,
   actDecreaseAmountProduct,
   actIncreaseAmountProduct} from '../../redux/actions'
-const data= [
-    {
-        id:1,
-        name:'grill salmon',
-        url:"https://asterseniorcommunities.com/wp-content/uploads/2017/03/plate-food.jpg",
-        price:22.2,
-    },
-    {
-        id:2,
-        name:'grill salmon',
-        url:"https://asterseniorcommunities.com/wp-content/uploads/2017/03/plate-food.jpg",
-        price:22.2,
-    },
-    {
-        id:3,
-        name:'grill salmon',
-        url:"https://asterseniorcommunities.com/wp-content/uploads/2017/03/plate-food.jpg",
-        price:22.2,
-    },
-]
+
 
 
 
 export const Cart = (props) => 
 {
+  const [loadingDone,setLoadingDone] = useState(1)  
+  useEffect(()=>{
+    navigation.addListener('focus', () => {
+        setLoadingDone(loadingDone+1)
+        });
+  })  
+
   const {navigation} = props
   const {listFoods} = useSelector(state=>state.cart)
   const dispatch = useDispatch()
@@ -68,9 +56,10 @@ export const Cart = (props) =>
     );
 
     const ThirdRoute = () => (
-        <DoneOrder navigation={navigation}/>
+        <DoneOrder navigation={navigation} loading={loadingDone}/>
         );
-
+    
+        
     const [index, setIndex] = React.useState(0);
     const [routes] = React.useState([
       { key: 'first', title: 'Add Food' },

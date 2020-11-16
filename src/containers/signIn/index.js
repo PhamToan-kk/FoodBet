@@ -1,6 +1,5 @@
 import React,{useState,useEffect} from 'react';
 import { Text, View ,TouchableOpacity,ImageBackground, Button,Image, KeyboardAvoidingView
-    
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { ScaledSheet, } from 'react-native-size-matters';

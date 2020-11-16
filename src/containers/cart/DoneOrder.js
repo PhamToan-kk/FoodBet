@@ -21,7 +21,7 @@ import {
 
 const DoneOrder = (props) => 
 {
-    const{navigation} = props
+    const{navigation,loading} = props
     const {id} = useSelector(state=>state.userInfo)
     const [data,setData] = useState([])
     const getData = ()=>{

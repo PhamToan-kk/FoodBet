@@ -2,8 +2,8 @@ import axios from 'axios';
 import queryString from 'query-string';
 import { AsyncStorageService } from '../services/asyncStorageService'
 import Config from 'react-native-config';
-
-const baseURL = Config.BASE_URL
+import { BASE_URL } from '../network'
+const baseURL = BASE_URL
 const axiosClient = axios.create({
   baseURL: baseURL,
   headers: {

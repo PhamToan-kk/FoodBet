@@ -62,7 +62,7 @@ const Order = (props) =>
 
         <RenderListFood/>
         <View style={styles.seperateView}/>
-        <FText style={styles.normalInfo}>Total: {item.paymenttotal} $</FText>
+        <FText style={styles.normalInfo}>Total: {item.paymenttotal}$</FText>
         {
             !item.isactive? 
             null:
