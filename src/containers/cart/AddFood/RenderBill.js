@@ -43,13 +43,13 @@ const RenderBill = (props) =>
                 <Divider />
                 <View style={styles.lineBill}>
                     <FText style={styles.keyBill}>Discount</FText>
-                    <FText style={styles.keyBill}>$ {discount }</FText>
+                    <FText style={styles.keyBill}>$ {discount}</FText>
                 </View>
                 <Divider />
                 <View style={[styles.lineBill]}>
                     <FText style={[styles.keyBill,{fontWeight:'400'}]}>Total</FText>
                     <FText style={styles.keyBill}>$ {
-                        totalPrice + shipCost - discount 
+                        (totalPrice + shipCost - discount ).toFixed(2)
                     }
                     </FText>
                 </View>

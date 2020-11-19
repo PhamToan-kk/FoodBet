@@ -48,8 +48,8 @@ const AddFood = (props) =>
         customername:username,
         customerid:id,
         order:foodOrderSubmit,
-        shipcost:distance*shipPrice,
-        paymenttotal:totalPrice*(1-(discountPercent/100)) + distance*shipPrice,
+        shipcost:(distance*shipPrice).toFixed(2),
+        paymenttotal:(totalPrice*(1-(discountPercent/100)) + distance*shipPrice).toFixed(2),
         address:address,
         phone:phone,
         note:note,
@@ -122,7 +122,7 @@ const AddFood = (props) =>
                     />
                     <RenderBill 
                     totalPrice={totalPrice}
-                    shipCost={shipPrice * distance}
+                    shipCost={(shipPrice * distance)}
                     discount = {(discountPercent/100)*totalPrice}
 
                     />

@@ -27,3 +27,11 @@ export const actSetTextNote = (text)=>{
         text
     }
 }
+
+
+export const actSetDistance = (distance)=>{
+    return{
+        type:types.SET_DISTANCE,
+        distance
+}
+}

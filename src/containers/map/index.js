@@ -7,20 +7,25 @@ import {ScaledSheet} from 'react-native-size-matters';
 import {Colors, FontSizes} from '../../theme';
 import {FText} from '../../components';
 import {Styles} from '../../styles';
+import {useDispatch} from 'react-redux'
+import {actSetDistance} from '../../redux/actions'
 export const Map = () => {
   const GOOGLE_MAPS_APIKEY = Config.GOOGLE_MAPS_API_KEY;
   console.log('aaaa',GOOGLE_MAPS_APIKEY)  
+  const dispatch = useDispatch()
 
-
+  // const matchDistance = (x)=> dispatch(setDistance(x))
   const origin = {latitude: 21.039883, longitude: 105.805524};
   const destination = {latitude: 21.036538, longitude: 105.802784};
-  const [distance, setDistance] = useState(0);
+  const [distance, setDis] = useState(0);
   useEffect(() => {
     // _getDistance = () => {
     //     alert(`Distance\n${dis} Meter\nor\n${dis / 1000} KM`);
     // };
     const dis = (getDistance(origin, destination) / 1000).toFixed(2);
-    setDistance(dis);
+    // matchDistance(dis)
+    dispatch(actSetDistance(dis))
+    setDis(dis);
   }, []);
   return (
     <View style={styles.container}>

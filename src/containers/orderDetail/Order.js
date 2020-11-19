@@ -1,5 +1,5 @@
-import React from 'react';
-import { Text, View ,Alert} from 'react-native';
+import React ,{useState}from 'react';
+import { Text, View ,Alert,TextInput} from 'react-native';
 import {Colors,FontSizes} from '../../theme'
 import { Styles } from '../../styles'
 import {
@@ -18,10 +18,10 @@ import {orderApi } from '../../apis/OrderApi'
 const Order = (props) => 
 {
     const {item,navigation} = props
+    const [feedback,setFeedback] = useState()
     
-    const finishOrder = (ordername)=>{
-      
-        orderApi.finishOrder(ordername)
+    const finishOrder = (ordername,fdback)=>{
+        orderApi.finishOrder(ordername,fdback)
         .then((res)=>{
             // console.log(res)
             Alert.alert(
@@ -66,13 +66,25 @@ const Order = (props) =>
         {
             !item.isactive? 
             null:
-            <TouchableOpacity style={styles.btn}
-            onPress={
-                ()=>finishOrder(item.name)
-            }
-            >
-                <FText style={styles.btnTitle}>Finish Order</FText>
-            </TouchableOpacity>
+            <>
+                <TextInput
+                    value={feedback}
+                    onChangeText={(txt)=>setFeedback(txt)}
+                    style={styles.feedback}
+                    // numberOfLines={4}
+                    // multiline
+                    placeholder="Feedback about your order "
+                    placeholderTextColor={Colors.gray}
+                />
+                <TouchableOpacity style={styles.btn}
+                onPress={
+                    ()=>finishOrder(item.name,feedback)
+                }
+                >
+                    <FText style={styles.btnTitle}>Finish Order</FText>
+                </TouchableOpacity>
+            </>
+            
         }
     </View>
 );
@@ -117,6 +129,15 @@ const styles = ScaledSheet.create({
         fontSize:FontSizes.FONT_18,
         fontWeight:'500',
         color:Colors.white
+    },
+    feedback:{
+        width:'85%',
+        height:70,
+        borderWidth:0.5,
+        borderRadius:10,
+        alignSelf:'center',
+        color:Colors.Cornflower_Blue,
+        padding:10
     }
 
 })

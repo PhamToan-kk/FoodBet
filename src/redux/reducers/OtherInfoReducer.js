@@ -20,6 +20,12 @@ const otherInforReducer = (state = initialState, actions) => {
             newOtherInfo.note = actions.text
             return newOtherInfo;
             break;
+
+        case types.SET_DISTANCE:
+            // console.log('action',actions)
+            newOtherInfo.distance = actions.distance
+            return newOtherInfo;
+            break;    
         case types.SET_OTHER_INFOR_ACCOUNT:
             newOtherInfo.shipPrice = actions.shipPrice
             newOtherInfo.discountPercent = actions.discountPercent

@@ -16,10 +16,11 @@ export const orderApi = {
         return axiosClient.get(url,{params});
     },
 
-    finishOrder:(orderName)=>{
+    finishOrder:(orderName,feedback)=>{
         const url = "/orders/finishOrder"
         return axiosClient.post(url,{
-            orderName:orderName
+            orderName:orderName,
+            feedback:feedback
         });
     }
 } 

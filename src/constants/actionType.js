@@ -11,4 +11,7 @@ export const SET_TEXT_NOTE = 'SET_TEXT_NOTE';
 
 export const CLEAR_CART= 'CLEAR_CART';
 
+export const SET_DISTANCE= 'SET_DISTANCE';
+
+
 

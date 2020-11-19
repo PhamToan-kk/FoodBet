@@ -3,7 +3,9 @@ import queryString from 'query-string';
 import { AsyncStorageService } from '../services/asyncStorageService'
 import Config from 'react-native-config';
 import { BASE_URL } from '../network'
-const baseURL = BASE_URL
+// const baseURL = BASE_URL
+// const baseURL = "http:10.30.40.84:3000"
+const baseURL = "http:172.20.10.2:3000"
 const axiosClient = axios.create({
   baseURL: baseURL,
   headers: {
@@ -19,7 +21,7 @@ axiosClient.interceptors.request.use(
   // Handle token here ...
   const accessToken = await AsyncStorageService.getAccessToken()
        if (accessToken) {
-        //  console.log('accessTokem',accessToken)
+         console.log('accessTokem',accessToken)
            config.headers['Authorization'] = 'Bearer ' + accessToken;
        }
        config.headers['Content-Type'] = 'application/json';
@@ -44,7 +46,7 @@ axiosClient.interceptors.response.use((response) => {
   console.log('originalRequest',originalRequest)
   console.log('status ',err.response.status)
   console.log('err-data ',err.response.data)
-  alert(err.response.data.error.message)
+  // alert(err.response.data.error.message)
 
 
   if(err.response.status === 401 && originalRequest.url==="/authen/login" ){

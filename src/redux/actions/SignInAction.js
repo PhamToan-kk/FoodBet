@@ -2,6 +2,7 @@ import axios from 'axios';
 import * as types from '../../constants'
 import {store} from '../store'
 import {authApi} from '../../apis/authApi'
+import {AsyncStorageService} from '../../services/index'
 import Axios from 'axios';
 export const actSetUserInfor = (data) => {
     return{
@@ -20,6 +21,11 @@ export const actSignIn = (username,password) => {
            const data = await authApi.login(username,password)
            console.log('data',data)
             dispatch(actSetUserInfor(data))
+            const tokens = {
+                accessToken :data.accessToken,
+                refreshToken: data.refreshToken
+            }
+            AsyncStorageService.setTokens(tokens)
            
     }
 }
