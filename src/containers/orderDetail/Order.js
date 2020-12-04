@@ -29,9 +29,8 @@ const Order = (props) =>
                 "finish order successful!",
                 [
                   
-                  { text: "OK", }
+                    { text: "OK", onPress: () => navigation.goBack() }
                 ],
-                { cancelable: false }
               );       
         })
     }
@@ -71,8 +70,7 @@ const Order = (props) =>
                     value={feedback}
                     onChangeText={(txt)=>setFeedback(txt)}
                     style={styles.feedback}
-                    // numberOfLines={4}
-                    // multiline
+                    
                     placeholder="Feedback about your order "
                     placeholderTextColor={Colors.gray}
                 />

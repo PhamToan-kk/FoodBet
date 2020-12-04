@@ -19,7 +19,7 @@ export const OrderDetail = (props) =>
             <Header navigation={navigation} />
         </View>
         <View style={styles.listOrders}>
-            <Order item={item} />
+            <Order item={item} navigation={navigation}/>
         </View>
     </View>
 );

@@ -15,7 +15,7 @@ import {actSetTextNote} from '../../../redux/actions'
 const RenderAddress = ({
 }) => 
 {
-    const {note} = useSelector(state=>state.otherInfo)
+    const {note,address} = useSelector(state=>state.otherInfo)
     const [txtNote,setTextNote] = useState(note)
     const dispatch = useDispatch()
     useEffect(()=>{
@@ -31,7 +31,7 @@ const RenderAddress = ({
             <VectorIcon EvilIcons name="location" size={28} color={Colors.red_fresh}/>
             <View style={styles.addressInfor}>
                 <FText style={styles.txtTitle}>Place of delivery</FText>
-                <FText style={styles.txtValue}>7 Dong Quan,Quan Hoa,Cau Giay</FText>
+                <FText style={styles.txtValue}>{address}</FText>
             </View>
         </View>
         <FTextInput
