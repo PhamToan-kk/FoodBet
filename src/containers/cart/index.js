@@ -15,7 +15,8 @@ import {useSelector, useDispatch} from 'react-redux'
 import {
   actDeleteProductOfCart,
   actDecreaseAmountProduct,
-  actIncreaseAmountProduct} from '../../redux/actions'
+  actIncreaseAmountProduct
+} from '../../redux/actions'
 
 
 

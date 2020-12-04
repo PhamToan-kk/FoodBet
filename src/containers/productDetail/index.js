@@ -1,5 +1,5 @@
 import React, { useState,useMemo } from 'react';
-import { Text, View ,Image,TouchableOpacity,KeyboardAvoidingView} from 'react-native';
+import { Text, View ,Image,TouchableOpacity,KeyboardAvoidingView,Alert} from 'react-native';
 import { ScaledSheet, } from 'react-native-size-matters';
 import {
     FText ,
@@ -32,6 +32,16 @@ export const ProductDetail = (props) =>
     const onAddToCart = (product,amount)=>{
         // console.log('index product detail',product,amount)
         dispatch(actAddToCart(product,amount))
+        Alert.alert(
+            "Notification",
+            "Add foof to cart successfull",
+            [
+              
+              { text: "OK", onPress: () => console.log("OK Pressed") }
+            ],
+            { cancelable: false }
+          );
+
     }
 
 

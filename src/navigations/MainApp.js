@@ -8,12 +8,6 @@ import AppXX from './MainNavigation'
 const MainApp = ({
 
 }) => {
-    // useEffect(
-    //     ()=>{
-    //         dispatch(loadListFoods)
-    //     }
-    // )
-
     return(
     <Provider store = {store}>
         <AppXX/>

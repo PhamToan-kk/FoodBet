@@ -14,7 +14,6 @@ import {
 import {Styles } from '../../../styles'
 import { FontSizes,Colors} from '../../../theme'
 import _ from 'lodash';
-import RNPickerSelect from 'react-native-picker-select';
 
 
 const RenderBill = (props) => 
@@ -23,6 +22,8 @@ const RenderBill = (props) =>
         totalPrice,
         shipCost,
         discount,
+        discountPercent,
+        shipPrice
     }= props
     // const [method,setMethod] = useState('On Card')
 
@@ -37,12 +38,16 @@ const RenderBill = (props) =>
                 </View>
                 <Divider /> 
                 <View style={styles.lineBill}>
-                    <FText style={styles.keyBill}>Ship</FText>
+                    <FText style={styles.keyBill}>Ship
+                        <FText style={styles.dispercent}> ({shipPrice}$/km)</FText>
+                    </FText>
                     <FText style={styles.keyBill}>$ {shipCost}</FText>
                 </View>
                 <Divider />
                 <View style={styles.lineBill}>
-                    <FText style={styles.keyBill}>Discount</FText>
+                    <FText style={styles.keyBill}>Discount
+                        <FText style={styles.dispercent}> ({discountPercent}%)</FText>
+                    </FText>
                     <FText style={styles.keyBill}>$ {discount}</FText>
                 </View>
                 <Divider />
@@ -61,7 +66,6 @@ const RenderBill = (props) =>
                 </View>
             </Morph>
         </View>
-       
 
     </View>    
     
@@ -139,6 +143,9 @@ const styles = ScaledSheet.create({
             height:'30@s',
             backgroundColor:Colors. Linear_white6,
             ...Styles.row_around_center
+        },
+        dispercent:{
+            color:Colors.red_fresh
         }
     })
     

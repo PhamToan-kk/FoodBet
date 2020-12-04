@@ -4,7 +4,7 @@ import * as types from '../../constants'
 const initialState = {
     shipPrice:'',
     discountPercent:'',
-    address:'7 Dong Quan,Quan Hoa,Cau Giay',
+    address:'8 Ton That Thuyet Street',
     distance:1,
     note:''
 }
@@ -16,7 +16,7 @@ const otherInforReducer = (state = initialState, actions) => {
     const newOtherInfo = {...state}
     switch (actions.type) {
         case types.SET_TEXT_NOTE:
-            console.log('action',actions)
+            // console.log('action',actions)
             newOtherInfo.note = actions.text
             return newOtherInfo;
             break;
@@ -29,7 +29,7 @@ const otherInforReducer = (state = initialState, actions) => {
         case types.SET_OTHER_INFOR_ACCOUNT:
             newOtherInfo.shipPrice = actions.shipPrice
             newOtherInfo.discountPercent = actions.discountPercent
-            console.log('other info ',newOtherInfo)
+            // console.log('other info ',newOtherInfo)
             return newOtherInfo;
             break;
         default:

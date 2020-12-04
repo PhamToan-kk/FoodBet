@@ -3,13 +3,7 @@ import { Text, View,FlatList,Image,TouchableOpacity,StyleSheet} from 'react-nati
 import { ScaledSheet, } from 'react-native-size-matters';
 import {
     FText ,
-    TextInput,
     VectorIcon,
-    Morph,
-    HeartIcon,
-    MoveIcon,
-    Divider,
-    FButton,
     FTextInput
 } from '../../../components'
 import {Styles } from '../../../styles'
@@ -23,26 +17,13 @@ const RenderAddress = ({
 {
     const {note} = useSelector(state=>state.otherInfo)
     const [txtNote,setTextNote] = useState(note)
-    const typingTimeoutRef = useRef(null)
     const dispatch = useDispatch()
     useEffect(()=>{
 
     },[])
-    const hanldeNote=(txt)=>{
-        setTextNote(txt)
-        if(typingTimeoutRef.current){
-            clearTimeout(typingTimeoutRef.current)
-        }
+    const blurFunction = ()=>{
+        dispatch(actSetTextNote(txtNote))
 
-        typingTimeoutRef.current = setTimeout(
-            ()=>{
-                // filterFood(text)
-                dispatch(actSetTextNote(txtNote))
-                // alert(txtNote)
-            }
-            ,
-            500
-        )
     }
     return(
     <View style={styles.container}>
@@ -55,8 +36,10 @@ const RenderAddress = ({
         </View>
         <FTextInput
             value={txtNote}
-            onChangeText={txt=>hanldeNote(txt)}    
-
+            onChangeText={txt=>setTextNote(txt)}    
+            onBlur={()=>{   
+                blurFunction()
+            }}
             style={styles.noteView}
             leftComponent = {
                 <VectorIcon 

@@ -102,13 +102,17 @@ const SignUpForm = ({
 const SignUnschema = Yup.object({
     username:Yup.string()
     .required('Username is required')
+    .min(8)
+
     ,
     password:Yup.string()
     .required('Password is required')
+    .min(8)
+
     ,
     mobile:Yup.number()
     .required('Phone is required')
-    .min(10)
+    .min(8)
     
   
   })
@@ -128,7 +132,7 @@ const SignUnschema = Yup.object({
      txtErr:{
         fontSize:FontSizes.FONT_13,
         color:Colors.red,
-        fontWeight:'500',
+        fontWeight:'400',
         marginLeft:'50@s'
     },
     btn:{

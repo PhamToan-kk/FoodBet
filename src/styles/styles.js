@@ -30,11 +30,6 @@ export const Styles = StyleSheet.create({
         justifyContent:'space-around',
         alignItems:'center'
     },
-
-
-
-
-
     // flex-direction = row + justifycontent + alignItem
 
     row_center_center:{

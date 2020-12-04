@@ -15,10 +15,16 @@ import {
 import RenderSubmitBtn from './RenderSubmitBtn'
 import RenderAddress from './RenderAddress'
 import {orderApi} from '../../../apis/OrderApi'
+import useSocket from 'use-socket.io-client';
+
+import {BASE_SOCKET_URL} from '../../../network'
 
 
 const AddFood = (props) => 
 {   
+    const [socket] = useSocket(BASE_SOCKET_URL);
+    socket.connect();
+
     const [totalPrice,setTotalPrice] = useState(0)
     const dispatch = useDispatch()
     const {listFoods} = useSelector(state=>state.cart)
@@ -60,7 +66,7 @@ const AddFood = (props) =>
             alert('Please add food to your cart')
             return
         }
-        // socket.emit("customer_send_order", "noti")
+        socket.emit("customer_send_order_server", "cac customer")
 
         orderApi.addOrder(OrderSubmit)
         .then((res)=> {
@@ -74,6 +80,7 @@ const AddFood = (props) =>
                 { cancelable: false }
             );           
             dispatch(actClearCart())
+            socket.emit("user send admin","haha")
 
         } )
         .catch(err=>console.log('err order',err))
@@ -81,8 +88,6 @@ const AddFood = (props) =>
        
 
     }
-
-
     const deleteProductOfCart = (id)=>{
       dispatch(actDeleteProductOfCart(id))
     }
@@ -104,7 +109,7 @@ const AddFood = (props) =>
     useEffect(()=>{
        setTotal()
        
-    //    setSocket(io(BASE_URL)) 
+        
     },[listFoods])
 
 
@@ -124,6 +129,8 @@ const AddFood = (props) =>
                     totalPrice={totalPrice}
                     shipCost={(shipPrice * distance)}
                     discount = {(discountPercent/100)*totalPrice}
+                    shipPrice = {shipPrice}
+                    discountPercent = {discountPercent}
 
                     />
                 </ScrollView>

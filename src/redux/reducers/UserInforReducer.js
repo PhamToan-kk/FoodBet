@@ -24,6 +24,9 @@ const userInforReducer = (state = initialState, actions) => {
             newUser.phone = actions.phone
             newUser.role = actions.role
             return newUser;
+        case types.SIGN_OUT:
+            newUser.role="" 
+            return newUser;  
         default:
             return {...state}
     }

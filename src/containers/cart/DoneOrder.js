@@ -31,7 +31,7 @@ const DoneOrder = (props) =>
         orderApi.getOrderActivedNotFinish(params)
         .then(resj=>{
             setData(resj)
-            console.log('response',resj)
+            // console.log('response',resj)
         })
         .catch(err=>console.log(err))
     }
@@ -55,6 +55,7 @@ const DoneOrder = (props) =>
                 <FText>Active: {item.isactive ? "done":"no"}</FText>
                 <FText>{item.time}</FText>
                 <MoveIcon/>
+                <FText style={styles.delivering}>Delivering...</FText>
             </View>
         </TouchableOpacity>
     )
@@ -109,6 +110,13 @@ const styles = ScaledSheet.create({
     orderName:{
         fontSize:FontSizes.FONT_15,
         fontWeight:'300'
+    },
+    delivering:{
+        fontSize:FontSizes.FONT_12,
+        color:Colors.star,
+        position:'absolute',
+        bottom:10,
+        right:10
     }
 })
 export default DoneOrder;

@@ -9,7 +9,8 @@ import axios from 'axios'
 const AppXX = ({
 }) => {
     const role = useSelector(state=>state.userInfo.role)
-   
+    console.log('store initial',store.getState())
+
     return(
         <NavigationContainer>
                {role =="customer" ?  <MainStackScreens/> : <AuthStackScreens/> }

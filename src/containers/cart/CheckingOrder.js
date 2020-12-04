@@ -31,7 +31,7 @@ const CheckingOrder = (props) =>
         orderApi.getOrderNotActive(params)
         .then(resj=>{
             setData(resj)
-            console.log('response',resj)
+            // console.log('response',resj)
         })
         .catch(err=>console.log(err))
     }
@@ -55,6 +55,8 @@ const CheckingOrder = (props) =>
                 <FText>Active: {item.isactive ? "done":"no"}</FText>
                 <FText>{item.time}</FText>
                 <MoveIcon/>
+                <FText style={styles.pending}>pending...</FText>
+
             </View>
         </TouchableOpacity>
     )
@@ -109,6 +111,13 @@ const styles = ScaledSheet.create({
     orderName:{
         fontSize:FontSizes.FONT_15,
         fontWeight:'300'
+    },
+    pending:{
+        fontSize:FontSizes.FONT_13,
+        color:Colors.greenLight,
+        position:'absolute',
+        bottom:10,
+        right:10
     }
 })
 export default CheckingOrder;

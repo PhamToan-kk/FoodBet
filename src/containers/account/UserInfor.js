@@ -17,16 +17,16 @@ import UserAvatar from 'react-native-user-avatar';
 
 
 const UserInfor = ({
-    params,
+    username,address
 }) => (
     <View style={styles.container}>
         <FText h2  style={styles.txtTitle}>Profile</FText>
-        <UserAvatar size={120} name="Toan Dep "  />
-        <FText h3 style={styles.nameUser}>Toan Dep trai</FText>
+        <UserAvatar size={120} name={username}  />
+        <FText h3 style={styles.nameUser}>{username}</FText>
         <View style={styles.addressView}>
             <VectorIcon EvilIcons name="location" size={28} color={Colors.red_fresh}/>
             <View style={styles.addressInfor}>
-                <FText style={styles.txtValue}>565 Nguyen Trai street ,Ha Dong</FText>
+                <FText style={styles.txtValue}>{address}</FText>
             </View>
         </View>    
     </View>
